@@ -5,8 +5,9 @@ class IItem
 {
 public:
     
-    virtual void update( float ){};
-    virtual void draw(){};
+    virtual void update( float, std::vector<IItem *>, int ){};
+    
+    virtual void draw( bool ){};
 
 };
 

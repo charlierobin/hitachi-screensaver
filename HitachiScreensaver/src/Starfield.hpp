@@ -16,8 +16,8 @@ class Starfield: public IItem
 public:
     
     Starfield();
-    void update( float ) override;
-    void draw() override;
+    void update( float, std::vector<IItem *>, int ) override;
+    void draw( bool ) override;
     
 private:
     

@@ -18,14 +18,23 @@ class Pyramid: public IItem
 public:
     
     Pyramid();
+    Pyramid( vec3, vec3 );
     
-    void update( float ) override;
-    void draw() override;
+    void update( float, std::vector<IItem *>, int ) override;
+    void draw( bool ) override;
     
 private:
     
     std::vector<gl::BatchRef> slices_;
-//    int vectorSize_;
+    std::vector<gl::BatchRef> maskSlices;
+    
+    gl::BatchRef collisionSphere;
+    
+    vec3 mPosition;
+    vec3 speedPerSecond;
+    
+    float physicsRadius = 120;
+    float physicsDiameter = ( physicsRadius * 0.1 ) * 2;
     
     bool flashing_ = false;
     int direction_ = 1;
@@ -34,9 +43,6 @@ private:
     
     short spinning_ = -1;
     float spinningCounter_ = 0;
-    
-    vec3 mPosition;
-    vec3 speedPerSecond;
     
     vec3 tumbleAxis_ = vec3( 0, 1, 0 );
     float tumbleSpeed_ = 0.0;

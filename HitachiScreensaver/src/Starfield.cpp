@@ -32,15 +32,17 @@ Starfield::Starfield()
     rotationAxis = vec3( randFloat( -1.0f, 1.0f ), randFloat( -1.0f, 1.0f ), randFloat( -1.0f, 1.0f ) );
 }
 
-void Starfield::update( float time )
+void Starfield::update( float time, std::vector<IItem *> items, int index )
 {
     angle = angle + ( rotationSpeedPerSecond * time );
     
-    if ( angle >= ONE_TURN ) angle = 0.0;
+//    if ( angle >= ONE_TURN ) angle = 0.0;
 }
 
-void Starfield::draw()
+void Starfield::draw( bool mask )
 {
+    if ( mask ) return;
+        
     gl::color( 1.0, 1.0, 1.0, 1.0 );
     
     gl::pushModelMatrix();

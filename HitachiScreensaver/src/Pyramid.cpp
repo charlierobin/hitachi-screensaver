@@ -4,18 +4,35 @@ Pyramid::Pyramid()
 {
     ObjLoader loader( loadResource( "pyramid.obj" ) );
     
-    slices_.push_back( gl::Batch::create( loader.groupName( "Obj1" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    slices_.push_back( gl::Batch::create( loader.groupName( "Obj2" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    slices_.push_back( gl::Batch::create( loader.groupName( "Obj3" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    slices_.push_back( gl::Batch::create( loader.groupName( "Obj4" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    slices_.push_back( gl::Batch::create( loader.groupName( "Obj5" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    slices_.push_back( gl::Batch::create( loader.groupName( "Obj6" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj1" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj2" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj3" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj4" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj5" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj6" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
     
-    this->mPosition = vec3(0,0,-100);
-    this->speedPerSecond = vec3(6,0,0);
+    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj1" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
+    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj2" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
+    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj3" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
+    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj4" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
+    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj5" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
+    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj6" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
+    
+    auto sphere = geom::Sphere().subdivisions( 30 ).radius( physicsRadius );
+    
+    collisionSphere = gl::Batch::create( sphere, gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) );
+    
+    this->mPosition = vec3( 0, 0, -100 );
+    this->speedPerSecond = vec3( 6, 0, 0 );
 }
 
-void Pyramid::update( float time )
+Pyramid::Pyramid( vec3 position, vec3 speed ) : Pyramid()
+{
+    this->mPosition = position;
+    this->speedPerSecond = speed;
+}
+
+void Pyramid::update( float time, std::vector<IItem *> items, int index )
 {
     if ( flashing_ )
     {
@@ -61,26 +78,56 @@ void Pyramid::update( float time )
         }
     }
     
+    for ( int i = index + 1; i < items.size(); ++i )
+    {
+        if(std::is_class<Pyramid>::value)
+        {
+            Pyramid* p = dynamic_cast<Pyramid*>( items[ i ] );
+            
+            float distance = glm::distance( this->mPosition, p->mPosition );
+            
+            if ( distance <= ( physicsDiameter ) )
+            {
+                this->speedPerSecond = this->speedPerSecond * vec3( -1, 0, 0 );
+                p->speedPerSecond = p->speedPerSecond * vec3( -1, 0, 0 );
+            }
+        }
+    }
+    
+    float distanceFromCentre = glm::distance( this->mPosition, vec3( 0, 0, 0 ) );
+    
+    if ( distanceFromCentre > ENVIRONMENT_COLLISION_RADIUS )
+    {
+        this->speedPerSecond = this->speedPerSecond * vec3( -1, -1, -1 );
+    }
+    
     mPosition = mPosition + ( speedPerSecond * time );
 }
 
-void Pyramid::draw()
+void Pyramid::draw( bool mask )
 {
     gl::pushModelMatrix();
     
     gl::translate( this->mPosition );
     gl::scale( 0.1, 0.1, 0.1 );
-    //    gl::rotate( tumbleAngle_, tumbleAxis_ );
+    gl::rotate( tumbleAngle_, tumbleAxis_ );
     
     for ( int i = 0; i < slices_.size(); ++i )
     {
-        if ( flashing_ && i == current_ )
+        if(mask)
         {
-            cinder::gl::color( 1.0, 1.0, 1.0, 1.0 );
+            gl::color( 1.0, 1.0, 1.0 );
         }
         else
         {
-            cinder::gl::color( 239.0f / 255.0f, 27.0f / 255.0f, 52.0f / 255.0f, 1.0 );
+            if ( flashing_ && i == current_ )
+            {
+                gl::color( 1.0, 1.0, 1.0 );
+            }
+            else
+            {
+                gl::color( 0.937254901960784f, 0.105882352941176f, 0.203921568627451f );
+            }
         }
         
         if ( i == spinning_ )
@@ -89,13 +136,23 @@ void Pyramid::draw()
             gl::rotate( Tweening::easeInOutCubic( spinningCounter_, 0.0f, THIRD_OF_A_TURN, SPIN_COUNTER_MAX ), vec3( 0, 1, 0 ) );
         }
         
-        slices_[ i ]->draw();
+        if(mask)
+        {
+            this->maskSlices[ i ]->draw();
+        }
+        else
+        {
+            slices_[ i ]->draw();
+        }
         
         if ( i == spinning_ )
         {
             gl::popModelMatrix();
         }
     }
+    
+    //    cinder::gl::color( 0.0, 1.0, 0.0 );
+    //    collisionSphere->draw();
     
     gl::popModelMatrix();
 }
