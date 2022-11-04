@@ -20,7 +20,7 @@ Pyramid::Pyramid()
     
     auto sphere = geom::Sphere().subdivisions( 30 ).radius( physicsRadius );
     
-    collisionSphere = gl::Batch::create( sphere, gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) );
+    collisionSphere = gl::Batch::create( sphere, gl::context()->getStockShader( gl::ShaderDef().color() ) );
     
     this->mPosition = vec3( 0, 0, -100 );
     this->speedPerSecond = vec3( 6, 0, 0 );
@@ -112,42 +112,50 @@ void Pyramid::draw( bool mask )
     gl::scale( 0.1, 0.1, 0.1 );
     gl::rotate( tumbleAngle_, tumbleAxis_ );
     
-    for ( int i = 0; i < slices_.size(); ++i )
+    if ( mask )
     {
-        if(mask)
+        gl::color( 0, 0, 0 );
+        collisionSphere->draw();
+    }
+    else
+    {
+        for ( int i = 0; i < slices_.size(); ++i )
         {
-            gl::color( 1.0, 1.0, 1.0 );
-        }
-        else
-        {
-            if ( flashing_ && i == current_ )
+            if ( mask )
             {
                 gl::color( 1.0, 1.0, 1.0 );
             }
             else
             {
-                gl::color( 0.937254901960784f, 0.105882352941176f, 0.203921568627451f );
+                if ( flashing_ && i == current_ )
+                {
+                    gl::color( 1.0, 1.0, 1.0 );
+                }
+                else
+                {
+                    gl::color( 0.937254901960784f, 0.105882352941176f, 0.203921568627451f );
+                }
             }
-        }
-        
-        if ( i == spinning_ )
-        {
-            gl::pushModelMatrix();
-            gl::rotate( Tweening::easeInOutCubic( spinningCounter_, 0.0f, THIRD_OF_A_TURN, SPIN_COUNTER_MAX ), vec3( 0, 1, 0 ) );
-        }
-        
-        if(mask)
-        {
-            this->maskSlices[ i ]->draw();
-        }
-        else
-        {
-            slices_[ i ]->draw();
-        }
-        
-        if ( i == spinning_ )
-        {
-            gl::popModelMatrix();
+            
+            if ( i == spinning_ )
+            {
+                gl::pushModelMatrix();
+                gl::rotate( Tweening::easeInOutCubic( spinningCounter_, 0.0f, THIRD_OF_A_TURN, SPIN_COUNTER_MAX ), vec3( 0, 1, 0 ) );
+            }
+            
+            if ( mask )
+            {
+                 this->maskSlices[ i ]->draw();
+            }
+            else
+            {
+                slices_[ i ]->draw();
+            }
+            
+            if ( i == spinning_ )
+            {
+                gl::popModelMatrix();
+            }
         }
     }
     
@@ -156,5 +164,3 @@ void Pyramid::draw( bool mask )
     
     gl::popModelMatrix();
 }
-
-

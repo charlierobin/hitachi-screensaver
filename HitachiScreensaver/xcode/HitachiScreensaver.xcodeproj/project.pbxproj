@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,9 @@
 		CB4972DA2913EBA100827D53 /* Sun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB4972D82913EBA100827D53 /* Sun.cpp */; };
 		CB606C0B2914185E00762959 /* HiCommandPlacard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB606C092914185E00762959 /* HiCommandPlacard.cpp */; };
 		CB606C0F2914190A00762959 /* CaptionPlacard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB606C0D2914190A00762959 /* CaptionPlacard.cpp */; };
+		CB608DAC2914FD020020407D /* Lightning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB608DAA2914FD020020407D /* Lightning.cpp */; };
+		CB608DAF291504500020407D /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = CB608DAE291504500020407D /* lightning.png */; };
+		CB608DB2291508410020407D /* lightning.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB608DB1291508410020407D /* lightning.jpg */; };
 		CB81B58829111A4500C251CE /* HeroPyramid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB81B58629111A4500C251CE /* HeroPyramid.cpp */; };
 		CB81B58D29113BF200C251CE /* HeroPyramidSlice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB81B58C29113BF200C251CE /* HeroPyramidSlice.cpp */; };
 		CB81B5912911400A00C251CE /* text-bits.png in Resources */ = {isa = PBXBuildFile; fileRef = CB81B5902911400A00C251CE /* text-bits.png */; };
@@ -78,6 +81,10 @@
 		CB606C0A2914185E00762959 /* HiCommandPlacard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HiCommandPlacard.hpp; path = ../src/HiCommandPlacard.hpp; sourceTree = "<group>"; };
 		CB606C0D2914190A00762959 /* CaptionPlacard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CaptionPlacard.cpp; path = ../src/CaptionPlacard.cpp; sourceTree = "<group>"; };
 		CB606C0E2914190A00762959 /* CaptionPlacard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CaptionPlacard.hpp; path = ../src/CaptionPlacard.hpp; sourceTree = "<group>"; };
+		CB608DAA2914FD020020407D /* Lightning.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Lightning.cpp; path = ../src/Lightning.cpp; sourceTree = "<group>"; };
+		CB608DAB2914FD020020407D /* Lightning.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Lightning.hpp; path = ../src/Lightning.hpp; sourceTree = "<group>"; };
+		CB608DAE291504500020407D /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightning.png; sourceTree = "<group>"; };
+		CB608DB1291508410020407D /* lightning.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lightning.jpg; sourceTree = "<group>"; };
 		CB81B58629111A4500C251CE /* HeroPyramid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HeroPyramid.cpp; path = ../src/HeroPyramid.cpp; sourceTree = "<group>"; };
 		CB81B58729111A4500C251CE /* HeroPyramid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HeroPyramid.hpp; path = ../src/HeroPyramid.hpp; sourceTree = "<group>"; };
 		CB81B58B29113BF200C251CE /* HeroPyramidSlice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HeroPyramidSlice.hpp; path = ../src/HeroPyramidSlice.hpp; sourceTree = "<group>"; };
@@ -165,6 +172,8 @@
 				CB606C0A2914185E00762959 /* HiCommandPlacard.hpp */,
 				CB606C0D2914190A00762959 /* CaptionPlacard.cpp */,
 				CB606C0E2914190A00762959 /* CaptionPlacard.hpp */,
+				CB608DAA2914FD020020407D /* Lightning.cpp */,
+				CB608DAB2914FD020020407D /* Lightning.hpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -238,6 +247,8 @@
 		CBA9826C290E55E500D7CB5D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CB608DB1291508410020407D /* lightning.jpg */,
+				CB608DAE291504500020407D /* lightning.png */,
 				CBB3A23B2913A8A100B043CA /* uvGrid_512.png */,
 				CBB3A22A2913A73200B043CA /* billboard.obj */,
 				CBB3A22C2913A73200B043CA /* hds-logo.png */,
@@ -282,6 +293,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "HitachiScreensaver" */;
 			buildPhases = (
+				CB82CFE32915097A0079B77E /* ShellScript */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
@@ -333,6 +345,7 @@
 				CBA98280290E55E500D7CB5D /* CinderApp.icns in Resources */,
 				CBA98279290E55E500D7CB5D /* stars_right1.png in Resources */,
 				CB81B59A29126B3C00C251CE /* centre.jpg in Resources */,
+				CB608DB2291508410020407D /* lightning.jpg in Resources */,
 				CBA9827B290E55E500D7CB5D /* stars_back6.png in Resources */,
 				CBA98278290E55E500D7CB5D /* stars_bottom4.png in Resources */,
 				CBB3A22E2913A73200B043CA /* billboard.obj in Resources */,
@@ -345,10 +358,32 @@
 				CBA9827A290E55E500D7CB5D /* stars_top3.png in Resources */,
 				CBA9827F290E55E500D7CB5D /* pyramid.obj in Resources */,
 				CBA9827E290E55E500D7CB5D /* stars_front5.png in Resources */,
+				CB608DAF291504500020407D /* lightning.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CB82CFE32915097A0079B77E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xattr -cr $PROJECT_DIR/../Resources\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
@@ -366,6 +401,7 @@
 				CB606C0F2914190A00762959 /* CaptionPlacard.cpp in Sources */,
 				1BD708E6D7004B4F844BE18D /* HitachiScreensaverApp.cpp in Sources */,
 				CB81B58D29113BF200C251CE /* HeroPyramidSlice.cpp in Sources */,
+				CB608DAC2914FD020020407D /* Lightning.cpp in Sources */,
 				CB606C0B2914185E00762959 /* HiCommandPlacard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,7 +506,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+				USER_HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/include\"",
+					../include,
+				);
 			};
 			name = Debug;
 		};
@@ -511,7 +550,10 @@
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+				USER_HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/include\"",
+					../include,
+				);
 			};
 			name = Release;
 		};
