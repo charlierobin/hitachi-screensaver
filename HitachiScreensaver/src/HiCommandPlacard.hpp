@@ -11,7 +11,7 @@ class HiCommandPlacard: public Placard
     
 public:
     
-    HiCommandPlacard();
+    HiCommandPlacard(): Placard( "hicommand.png" ){};
     
 };
 

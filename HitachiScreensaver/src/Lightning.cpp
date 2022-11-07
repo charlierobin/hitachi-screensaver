@@ -19,10 +19,16 @@ void Lightning::draw()
     
     gl::color( 1, 1, 1 );
     
+//    gl::disableDepthRead();
+//    gl::disableDepthWrite();
+    
+    gl::disableAlphaBlending();
     gl::enableAdditiveBlending();
     
-    gl::drawBillboard( vec3( 0, 0, 0 ), vec2( 3, 6.5 ), 0 , vec3( 1, 0, 0 ), vec3( 0, -1, 0 ) );
+    gl::drawBillboard( vec3( 0, 0, -150 ), vec2( 30, 65 ), 0 , vec3( 1, 0, 0 ), vec3( 0, -1, 0 ) );
 
     gl::enableAlphaBlending();
+    
+//    gl::enableDepth();
 }
 

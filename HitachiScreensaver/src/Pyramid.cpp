@@ -32,8 +32,10 @@ Pyramid::Pyramid( vec3 position, vec3 speed ) : Pyramid()
     this->speedPerSecond = speed;
 }
 
-void Pyramid::update( float time, std::vector<IItem *> items, int index )
+void Pyramid::update( float time, std::vector<Pyramid *> pyramids, int index )
 {
+    tumbleAngle_ = tumbleAngle_ + ( tumbleSpeedPerSecond * time );
+    
     if ( flashing_ )
     {
         ++counter_;
@@ -78,33 +80,33 @@ void Pyramid::update( float time, std::vector<IItem *> items, int index )
         }
     }
     
-    for ( int i = index + 1; i < items.size(); ++i )
-    {
-        if(std::is_class<Pyramid>::value)
-        {
-            Pyramid* p = dynamic_cast<Pyramid*>( items[ i ] );
-            
-            float distance = glm::distance( this->mPosition, p->mPosition );
-            
-            if ( distance <= ( physicsDiameter ) )
-            {
-                this->speedPerSecond = this->speedPerSecond * vec3( -1, 0, 0 );
-                p->speedPerSecond = p->speedPerSecond * vec3( -1, 0, 0 );
-            }
-        }
-    }
-    
-    float distanceFromCentre = glm::distance( this->mPosition, vec3( 0, 0, 0 ) );
-    
-    if ( distanceFromCentre > ENVIRONMENT_COLLISION_RADIUS )
-    {
-        this->speedPerSecond = this->speedPerSecond * vec3( -1, -1, -1 );
-    }
+//    for ( int i = index + 1; i < items.size(); ++i )
+//    {
+//        if(std::is_class<Pyramid>::value)
+//        {
+//            Pyramid* p = dynamic_cast<Pyramid*>( items[ i ] );
+//
+//            float distance = glm::distance( this->mPosition, p->mPosition );
+//
+//            if ( distance <= ( physicsDiameter ) )
+//            {
+//                this->speedPerSecond = this->speedPerSecond * vec3( -1, 0, 0 );
+//                p->speedPerSecond = p->speedPerSecond * vec3( -1, 0, 0 );
+//            }
+//        }
+//    }
+//
+//    float distanceFromCentre = glm::distance( this->mPosition, vec3( 0, 0, 0 ) );
+//
+//    if ( distanceFromCentre > ENVIRONMENT_COLLISION_RADIUS )
+//    {
+//        this->speedPerSecond = this->speedPerSecond * vec3( -1, -1, -1 );
+//    }
     
     mPosition = mPosition + ( speedPerSecond * time );
 }
 
-void Pyramid::draw( bool mask )
+void Pyramid::draw()
 {
     gl::pushModelMatrix();
     
@@ -112,50 +114,28 @@ void Pyramid::draw( bool mask )
     gl::scale( 0.1, 0.1, 0.1 );
     gl::rotate( tumbleAngle_, tumbleAxis_ );
     
-    if ( mask )
+    for ( int i = 0; i < slices_.size(); ++i )
     {
-        gl::color( 0, 0, 0 );
-        collisionSphere->draw();
-    }
-    else
-    {
-        for ( int i = 0; i < slices_.size(); ++i )
+        if ( flashing_ && i == current_ )
         {
-            if ( mask )
-            {
-                gl::color( 1.0, 1.0, 1.0 );
-            }
-            else
-            {
-                if ( flashing_ && i == current_ )
-                {
-                    gl::color( 1.0, 1.0, 1.0 );
-                }
-                else
-                {
-                    gl::color( 0.937254901960784f, 0.105882352941176f, 0.203921568627451f );
-                }
-            }
-            
-            if ( i == spinning_ )
-            {
-                gl::pushModelMatrix();
-                gl::rotate( Tweening::easeInOutCubic( spinningCounter_, 0.0f, THIRD_OF_A_TURN, SPIN_COUNTER_MAX ), vec3( 0, 1, 0 ) );
-            }
-            
-            if ( mask )
-            {
-                 this->maskSlices[ i ]->draw();
-            }
-            else
-            {
-                slices_[ i ]->draw();
-            }
-            
-            if ( i == spinning_ )
-            {
-                gl::popModelMatrix();
-            }
+            gl::color( 1.0, 1.0, 1.0 );
+        }
+        else
+        {
+            gl::color( 0.937254901960784f, 0.105882352941176f, 0.203921568627451f );
+        }
+        
+        if ( i == spinning_ )
+        {
+            gl::pushModelMatrix();
+            gl::rotate( Tweening::easeInOutCubic( spinningCounter_, 0.0f, THIRD_OF_A_TURN, SPIN_COUNTER_MAX ), vec3( 0, 1, 0 ) );
+        }
+        
+        slices_[ i ]->draw();
+        
+        if ( i == spinning_ )
+        {
+            gl::popModelMatrix();
         }
     }
     

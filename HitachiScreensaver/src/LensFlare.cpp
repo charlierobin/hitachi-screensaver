@@ -9,18 +9,15 @@ LensFlare::LensFlare()
     this->position = vec2( 10, 10 );
 }
 
-void LensFlare::update( float time, std::vector<IItem *> items, int index )
+void LensFlare::draw()
 {
-}
-
-void LensFlare::draw( bool mask )
-{
-    if ( mask ) return;
-    
     float scaledWidth = 1024 * intensity * 0.5;
     float scaledHeight = 1024 * intensity * 0.5;
     
     gl::setMatricesWindow( getWindowSize() );
+    
+//    gl::disableDepthRead();
+//    gl::disableDepthWrite();
     
     gl::disableAlphaBlending();
     

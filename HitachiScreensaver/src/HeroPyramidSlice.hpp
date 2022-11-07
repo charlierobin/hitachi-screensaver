@@ -9,20 +9,20 @@
 
 #include "macros.h"
 #include "Tweening.hpp"
-#include "IItem.hpp"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class HeroPyramidSlice: public IItem {
+class HeroPyramidSlice
+{
     
 public:
     
     HeroPyramidSlice( string, float );
     
-    void update( float, std::vector<IItem *>, int ) override;
-    void draw( bool ) override;
+    void update( float );
+    void draw();
     
     void trigger( float );
     

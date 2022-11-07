@@ -6,11 +6,12 @@
 using namespace ci;
 using namespace ci::app;
 
-class HitachiPlacard: public Placard {
+class HitachiPlacard: public Placard
+{
     
 public:
     
-    HitachiPlacard();
+    HitachiPlacard(): Placard( "hds-logo.png" ){};
     
 };
 

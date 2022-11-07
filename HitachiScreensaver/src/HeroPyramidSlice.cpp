@@ -19,7 +19,7 @@ void HeroPyramidSlice::trigger( float duration )
     CueRef cue = timeline().add( bind( &HeroPyramidSlice::startComingIn, this ), timeline().getCurrentTime() + offset_ );
 }
 
-void HeroPyramidSlice::update( float time, std::vector<IItem *> items, int index )
+void HeroPyramidSlice::update( float time )
 {
     if ( state_ == COMING_IN )
     {
@@ -63,10 +63,8 @@ void HeroPyramidSlice::startGoingOut()
     counter_ = 0;
 }
 
-void HeroPyramidSlice::draw( bool mask )
+void HeroPyramidSlice::draw()
 {
-    if ( mask ) return;
-    
     gl::pushModelMatrix();
     
     gl::rotate( angle_, AROUND_Y_AXIS );

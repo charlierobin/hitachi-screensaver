@@ -11,15 +11,15 @@
 using namespace ci;
 using namespace ci::app;
 
-class HeroPyramid: public IItem
+class HeroPyramid
 {
     
 public:
     
     HeroPyramid();
     
-    void update( float, std::vector<IItem *>, int ) override;
-    void draw( bool ) override;
+    void update( float );
+    void draw();
     
     void startComingIn();
     

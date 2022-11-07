@@ -17,7 +17,7 @@ HeroPyramid::HeroPyramid()
     z_ = -40.0f;
 }
 
-void HeroPyramid::update( float time, std::vector<IItem *> items, int index )
+void HeroPyramid::update( float time )
 {
     angle_ = angle_ + 0.01f;
     
@@ -27,7 +27,7 @@ void HeroPyramid::update( float time, std::vector<IItem *> items, int index )
     
     for ( int i = 0; i < slices_.size(); ++i )
     {
-        slices_[ i ]->update( time, items, index );
+        slices_[ i ]->update( time );
         if ( slices_[ i ]->isBusy() ) busy = true;
     }
     
@@ -38,10 +38,8 @@ void HeroPyramid::update( float time, std::vector<IItem *> items, int index )
     }
 }
 
-void HeroPyramid::draw( bool mask )
+void HeroPyramid::draw()
 {
-    if ( mask ) return;
-    
     gl::pushModelMatrix();
     
     gl::translate( x_, y_, z_ );
@@ -55,7 +53,7 @@ void HeroPyramid::draw( bool mask )
     
     for ( int i = 0; i < slices_.size(); ++i )
     {
-        slices_[ i ]->draw( mask );
+        slices_[ i ]->draw();
     }
     
     gl::popModelMatrix();

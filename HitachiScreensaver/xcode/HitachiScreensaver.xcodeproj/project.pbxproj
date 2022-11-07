@@ -22,11 +22,9 @@
 		CB1A5FA829080F7D004C7D12 /* Starfield.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB1A5FA629080F7D004C7D12 /* Starfield.cpp */; };
 		CB1A5FBF29091B38004C7D12 /* Pyramid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB1A5FBD29091B38004C7D12 /* Pyramid.cpp */; };
 		CB4972DA2913EBA100827D53 /* Sun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB4972D82913EBA100827D53 /* Sun.cpp */; };
-		CB606C0B2914185E00762959 /* HiCommandPlacard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB606C092914185E00762959 /* HiCommandPlacard.cpp */; };
-		CB606C0F2914190A00762959 /* CaptionPlacard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB606C0D2914190A00762959 /* CaptionPlacard.cpp */; };
 		CB608DAC2914FD020020407D /* Lightning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB608DAA2914FD020020407D /* Lightning.cpp */; };
-		CB608DAF291504500020407D /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = CB608DAE291504500020407D /* lightning.png */; };
 		CB608DB2291508410020407D /* lightning.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB608DB1291508410020407D /* lightning.jpg */; };
+		CB7E66CD2917BB260074ECC6 /* star.obj in Resources */ = {isa = PBXBuildFile; fileRef = CB7E66CC2917BB260074ECC6 /* star.obj */; };
 		CB81B58829111A4500C251CE /* HeroPyramid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB81B58629111A4500C251CE /* HeroPyramid.cpp */; };
 		CB81B58D29113BF200C251CE /* HeroPyramidSlice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB81B58C29113BF200C251CE /* HeroPyramidSlice.cpp */; };
 		CB81B5912911400A00C251CE /* text-bits.png in Resources */ = {isa = PBXBuildFile; fileRef = CB81B5902911400A00C251CE /* text-bits.png */; };
@@ -46,9 +44,10 @@
 		CBB3A22F2913A73200B043CA /* hicommand.png in Resources */ = {isa = PBXBuildFile; fileRef = CBB3A22B2913A73200B043CA /* hicommand.png */; };
 		CBB3A2302913A73200B043CA /* hds-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CBB3A22C2913A73200B043CA /* hds-logo.png */; };
 		CBB3A2312913A73200B043CA /* simplify.png in Resources */ = {isa = PBXBuildFile; fileRef = CBB3A22D2913A73200B043CA /* simplify.png */; };
-		CBB3A2352913A7FD00B043CA /* HitachiPlacard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBB3A2332913A7FD00B043CA /* HitachiPlacard.cpp */; };
 		CBB3A2392913A83900B043CA /* Placard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBB3A2382913A83900B043CA /* Placard.cpp */; };
 		CBB3A23C2913A8A100B043CA /* uvGrid_512.png in Resources */ = {isa = PBXBuildFile; fileRef = CBB3A23B2913A8A100B043CA /* uvGrid_512.png */; };
+		CBD7AF292916BAAF001942FB /* uvGrid_512_with_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AF282916BAAF001942FB /* uvGrid_512_with_alpha.png */; };
+		CBD7AF2E2916BF0F001942FB /* twinkle.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AF2D2916BF0F001942FB /* twinkle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,20 +70,17 @@
 		8D1107320486CEB800E47090 /* HitachiScreensaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitachiScreensaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB1A5FA629080F7D004C7D12 /* Starfield.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Starfield.cpp; path = ../src/Starfield.cpp; sourceTree = "<group>"; };
 		CB1A5FA729080F7D004C7D12 /* Starfield.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Starfield.hpp; path = ../src/Starfield.hpp; sourceTree = "<group>"; };
-		CB1A5FAB29080FED004C7D12 /* IItem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = IItem.hpp; path = ../src/IItem.hpp; sourceTree = "<group>"; };
 		CB1A5FBB29083D28004C7D12 /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macros.h; path = ../src/macros.h; sourceTree = "<group>"; };
 		CB1A5FBD29091B38004C7D12 /* Pyramid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Pyramid.cpp; path = ../src/Pyramid.cpp; sourceTree = "<group>"; };
 		CB1A5FBE29091B38004C7D12 /* Pyramid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Pyramid.hpp; path = ../src/Pyramid.hpp; sourceTree = "<group>"; };
 		CB4972D82913EBA100827D53 /* Sun.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Sun.cpp; path = ../src/Sun.cpp; sourceTree = "<group>"; };
 		CB4972D92913EBA100827D53 /* Sun.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Sun.hpp; path = ../src/Sun.hpp; sourceTree = "<group>"; };
-		CB606C092914185E00762959 /* HiCommandPlacard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HiCommandPlacard.cpp; path = ../src/HiCommandPlacard.cpp; sourceTree = "<group>"; };
 		CB606C0A2914185E00762959 /* HiCommandPlacard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HiCommandPlacard.hpp; path = ../src/HiCommandPlacard.hpp; sourceTree = "<group>"; };
-		CB606C0D2914190A00762959 /* CaptionPlacard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CaptionPlacard.cpp; path = ../src/CaptionPlacard.cpp; sourceTree = "<group>"; };
 		CB606C0E2914190A00762959 /* CaptionPlacard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CaptionPlacard.hpp; path = ../src/CaptionPlacard.hpp; sourceTree = "<group>"; };
 		CB608DAA2914FD020020407D /* Lightning.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Lightning.cpp; path = ../src/Lightning.cpp; sourceTree = "<group>"; };
 		CB608DAB2914FD020020407D /* Lightning.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Lightning.hpp; path = ../src/Lightning.hpp; sourceTree = "<group>"; };
-		CB608DAE291504500020407D /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightning.png; sourceTree = "<group>"; };
 		CB608DB1291508410020407D /* lightning.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lightning.jpg; sourceTree = "<group>"; };
+		CB7E66CC2917BB260074ECC6 /* star.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = star.obj; sourceTree = "<group>"; };
 		CB81B58629111A4500C251CE /* HeroPyramid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HeroPyramid.cpp; path = ../src/HeroPyramid.cpp; sourceTree = "<group>"; };
 		CB81B58729111A4500C251CE /* HeroPyramid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HeroPyramid.hpp; path = ../src/HeroPyramid.hpp; sourceTree = "<group>"; };
 		CB81B58B29113BF200C251CE /* HeroPyramidSlice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HeroPyramidSlice.hpp; path = ../src/HeroPyramidSlice.hpp; sourceTree = "<group>"; };
@@ -108,11 +104,12 @@
 		CBB3A22B2913A73200B043CA /* hicommand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hicommand.png; sourceTree = "<group>"; };
 		CBB3A22C2913A73200B043CA /* hds-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hds-logo.png"; sourceTree = "<group>"; };
 		CBB3A22D2913A73200B043CA /* simplify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simplify.png; sourceTree = "<group>"; };
-		CBB3A2332913A7FD00B043CA /* HitachiPlacard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HitachiPlacard.cpp; path = ../src/HitachiPlacard.cpp; sourceTree = "<group>"; };
 		CBB3A2342913A7FD00B043CA /* HitachiPlacard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HitachiPlacard.hpp; path = ../src/HitachiPlacard.hpp; sourceTree = "<group>"; };
 		CBB3A2372913A83900B043CA /* Placard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Placard.hpp; path = ../src/Placard.hpp; sourceTree = "<group>"; };
 		CBB3A2382913A83900B043CA /* Placard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Placard.cpp; path = ../src/Placard.cpp; sourceTree = "<group>"; };
 		CBB3A23B2913A8A100B043CA /* uvGrid_512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uvGrid_512.png; sourceTree = "<group>"; };
+		CBD7AF282916BAAF001942FB /* uvGrid_512_with_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uvGrid_512_with_alpha.png; sourceTree = "<group>"; };
+		CBD7AF2D2916BF0F001942FB /* twinkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twinkle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,33 +144,29 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CBB3A2382913A83900B043CA /* Placard.cpp */,
-				CBB3A2372913A83900B043CA /* Placard.hpp */,
-				2CB70EF25E964E14B7231FEC /* HitachiScreensaverApp.cpp */,
-				CB1A5FA629080F7D004C7D12 /* Starfield.cpp */,
-				CB1A5FA729080F7D004C7D12 /* Starfield.hpp */,
-				CB1A5FAB29080FED004C7D12 /* IItem.hpp */,
-				CB1A5FBB29083D28004C7D12 /* macros.h */,
-				CB1A5FBD29091B38004C7D12 /* Pyramid.cpp */,
-				CB1A5FBE29091B38004C7D12 /* Pyramid.hpp */,
-				CBAA1DCA290BF51800E0AC51 /* Tweening.hpp */,
-				CBAA1DCC290BF62A00E0AC51 /* Tweening.cpp */,
+				CB606C0E2914190A00762959 /* CaptionPlacard.hpp */,
 				CB81B58629111A4500C251CE /* HeroPyramid.cpp */,
 				CB81B58729111A4500C251CE /* HeroPyramid.hpp */,
 				CB81B58C29113BF200C251CE /* HeroPyramidSlice.cpp */,
 				CB81B58B29113BF200C251CE /* HeroPyramidSlice.hpp */,
+				CB606C0A2914185E00762959 /* HiCommandPlacard.hpp */,
+				CBB3A2342913A7FD00B043CA /* HitachiPlacard.hpp */,
+				2CB70EF25E964E14B7231FEC /* HitachiScreensaverApp.cpp */,
 				CB81B593291263C400C251CE /* LensFlare.cpp */,
 				CB81B594291263C400C251CE /* LensFlare.hpp */,
-				CBB3A2332913A7FD00B043CA /* HitachiPlacard.cpp */,
-				CBB3A2342913A7FD00B043CA /* HitachiPlacard.hpp */,
-				CB4972D82913EBA100827D53 /* Sun.cpp */,
-				CB4972D92913EBA100827D53 /* Sun.hpp */,
-				CB606C092914185E00762959 /* HiCommandPlacard.cpp */,
-				CB606C0A2914185E00762959 /* HiCommandPlacard.hpp */,
-				CB606C0D2914190A00762959 /* CaptionPlacard.cpp */,
-				CB606C0E2914190A00762959 /* CaptionPlacard.hpp */,
 				CB608DAA2914FD020020407D /* Lightning.cpp */,
 				CB608DAB2914FD020020407D /* Lightning.hpp */,
+				CB1A5FBB29083D28004C7D12 /* macros.h */,
+				CBB3A2382913A83900B043CA /* Placard.cpp */,
+				CBB3A2372913A83900B043CA /* Placard.hpp */,
+				CB1A5FBD29091B38004C7D12 /* Pyramid.cpp */,
+				CB1A5FBE29091B38004C7D12 /* Pyramid.hpp */,
+				CB1A5FA629080F7D004C7D12 /* Starfield.cpp */,
+				CB1A5FA729080F7D004C7D12 /* Starfield.hpp */,
+				CB4972D82913EBA100827D53 /* Sun.cpp */,
+				CB4972D92913EBA100827D53 /* Sun.hpp */,
+				CBAA1DCC290BF62A00E0AC51 /* Tweening.cpp */,
+				CBAA1DCA290BF51800E0AC51 /* Tweening.hpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -247,13 +240,10 @@
 		CBA9826C290E55E500D7CB5D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CBD7AF2B2916BBB9001942FB /* placards */,
 				CB608DB1291508410020407D /* lightning.jpg */,
-				CB608DAE291504500020407D /* lightning.png */,
 				CBB3A23B2913A8A100B043CA /* uvGrid_512.png */,
-				CBB3A22A2913A73200B043CA /* billboard.obj */,
-				CBB3A22C2913A73200B043CA /* hds-logo.png */,
-				CBB3A22B2913A73200B043CA /* hicommand.png */,
-				CBB3A22D2913A73200B043CA /* simplify.png */,
+				CBD7AF282916BAAF001942FB /* uvGrid_512_with_alpha.png */,
 				CB81B59829126B3C00C251CE /* centre.jpg */,
 				CB81B5902911400A00C251CE /* text-bits.png */,
 				CBA9826D290E55E500D7CB5D /* starfield */,
@@ -267,6 +257,8 @@
 		CBA9826D290E55E500D7CB5D /* starfield */ = {
 			isa = PBXGroup;
 			children = (
+				CBD7AF2D2916BF0F001942FB /* twinkle.png */,
+				CB7E66CC2917BB260074ECC6 /* star.obj */,
 				CBA9826E290E55E500D7CB5D /* stars_bottom4.png */,
 				CBA9826F290E55E500D7CB5D /* stars_right1.png */,
 				CBA98270290E55E500D7CB5D /* stars_top3.png */,
@@ -284,6 +276,17 @@
 				CBA98276290E55E500D7CB5D /* pyramid.obj */,
 			);
 			path = pyramid;
+			sourceTree = "<group>";
+		};
+		CBD7AF2B2916BBB9001942FB /* placards */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3A22A2913A73200B043CA /* billboard.obj */,
+				CBB3A22C2913A73200B043CA /* hds-logo.png */,
+				CBB3A22B2913A73200B043CA /* hicommand.png */,
+				CBB3A22D2913A73200B043CA /* simplify.png */,
+			);
+			path = placards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB7E66CD2917BB260074ECC6 /* star.obj in Resources */,
 				CBB3A2312913A73200B043CA /* simplify.png in Resources */,
 				CBA98280290E55E500D7CB5D /* CinderApp.icns in Resources */,
 				CBA98279290E55E500D7CB5D /* stars_right1.png in Resources */,
@@ -349,16 +353,17 @@
 				CBA9827B290E55E500D7CB5D /* stars_back6.png in Resources */,
 				CBA98278290E55E500D7CB5D /* stars_bottom4.png in Resources */,
 				CBB3A22E2913A73200B043CA /* billboard.obj in Resources */,
+				CBD7AF2E2916BF0F001942FB /* twinkle.png in Resources */,
 				CBB3A2302913A73200B043CA /* hds-logo.png in Resources */,
 				CBB3A22F2913A73200B043CA /* hicommand.png in Resources */,
 				CBB3A23C2913A8A100B043CA /* uvGrid_512.png in Resources */,
 				CB81B5912911400A00C251CE /* text-bits.png in Resources */,
 				CBA9827C290E55E500D7CB5D /* starfield.obj in Resources */,
 				CBA9827D290E55E500D7CB5D /* stars_left2.png in Resources */,
+				CBD7AF292916BAAF001942FB /* uvGrid_512_with_alpha.png in Resources */,
 				CBA9827A290E55E500D7CB5D /* stars_top3.png in Resources */,
 				CBA9827F290E55E500D7CB5D /* pyramid.obj in Resources */,
 				CBA9827E290E55E500D7CB5D /* stars_front5.png in Resources */,
-				CB608DAF291504500020407D /* lightning.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,13 +401,10 @@
 				CB1A5FBF29091B38004C7D12 /* Pyramid.cpp in Sources */,
 				CB4972DA2913EBA100827D53 /* Sun.cpp in Sources */,
 				CB81B58829111A4500C251CE /* HeroPyramid.cpp in Sources */,
-				CBB3A2352913A7FD00B043CA /* HitachiPlacard.cpp in Sources */,
 				CBAA1DCD290BF62A00E0AC51 /* Tweening.cpp in Sources */,
-				CB606C0F2914190A00762959 /* CaptionPlacard.cpp in Sources */,
 				1BD708E6D7004B4F844BE18D /* HitachiScreensaverApp.cpp in Sources */,
 				CB81B58D29113BF200C251CE /* HeroPyramidSlice.cpp in Sources */,
 				CB608DAC2914FD020020407D /* Lightning.cpp in Sources */,
-				CB606C0B2914185E00762959 /* HiCommandPlacard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,55 +2,43 @@
 
 Placard::Placard()
 {
-    initialise();
+    ObjLoader loader( loadResource( "billboard.obj" ) );
+    placard_ = gl::Batch::create( loader, gl::context()->getStockShader( gl::ShaderDef().color().texture() ) );
+    
+    auto img = loadImage( loadResource( "uvGrid_512.png" ) );
+    texture_ = gl::Texture::create( img );
+    
     angle_ = HALF_A_TURN;
 }
 
-void Placard::initialise()
-{
-    setSpeed( 6.0 );
-    ObjLoader loader( loadResource( "billboard.obj" ) );
-    placard_ = gl::Batch::create( loader, gl::context()->getStockShader( gl::ShaderDef().color().texture() ) );
-    loadTexture( "uvGrid_512.png" );
-}
-
-void Placard::loadTexture( string name )
+Placard::Placard( string name ) : Placard()
 {
     auto img = loadImage( loadResource( name ) );
     texture_ = gl::Texture::create( img );
-}
-
-void Placard::setSpeed( float secondsPerOrbit )
-{
-    //    speed_ = ONE_TURN / ( APPROX_FRAMERATE * secondsPerOrbit );
-}
-
-void Placard::randomise()
-{
-    setSpeed( randFloat( 8.0f, 20.0f ) );
+    
     zRotation_ = randFloat( - HALF_A_TURN, HALF_A_TURN );
     yRotation_ = randFloat( - HALF_A_TURN, HALF_A_TURN );
     angle_ = randFloat( 0.0f, ONE_TURN );
     
-    speedPerSecond_ = speedPerSecond_ * randFloat( 0.9f, 1.1f );
+    speedPerSecond_ = speedPerSecond_ * randFloat( 1.0f, 1.5f );
 }
 
-void Placard::update( float time, std::vector<IItem *> items, int index )
+void Placard::update( float time )
 {
     angle_ = angle_ + ( speedPerSecond_ * time );
-    if ( angle_ >= ONE_TURN ) angle_ = 0.0;
 }
 
-void Placard::draw( bool mask )
+void Placard::draw()
 {
-    if ( mask ) return;
+    gl::disableDepthRead();
+    gl::disableDepthWrite();
     
-//    gl::disableDepthRead();
-//    gl::disableDepthWrite();
+//    gl::disableAlphaBlending();
+//    gl::enableAdditiveBlending();
     
     gl::ScopedTextureBind tex0( texture_ );
     
-    cinder::gl::color( 1,1,1 );
+    cinder::gl::color( colour_ );
     
     gl::pushModelMatrix();
     
@@ -62,7 +50,9 @@ void Placard::draw( bool mask )
     
     gl::popModelMatrix();
     
-//    gl::enableDepthRead();
-//    gl::enableDepthWrite();
+//    gl::enableAlphaBlending();
+    
+    gl::enableDepthRead();
+    gl::enableDepthWrite();
 }
 

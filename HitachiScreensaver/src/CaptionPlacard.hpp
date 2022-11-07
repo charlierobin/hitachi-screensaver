@@ -11,7 +11,7 @@ class CaptionPlacard: public Placard
     
 public:
     
-    CaptionPlacard();
+    CaptionPlacard(): Placard( "simplify.png" ){};
     
 };
 

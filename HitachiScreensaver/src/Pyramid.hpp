@@ -6,22 +6,23 @@
 
 #include "macros.h"
 
-#include "IItem.hpp"
 #include "Tweening.hpp"
 
 using namespace ci;
 using namespace ci::app;
 
-class Pyramid: public IItem
+class Pyramid
 {
-    
+
 public:
     
     Pyramid();
     Pyramid( vec3, vec3 );
     
-    void update( float, std::vector<IItem *>, int ) override;
-    void draw( bool ) override;
+    void update( float, std::vector<Pyramid *>, int );
+    void draw();
+    
+    vec3 mPosition;
     
 private:
     
@@ -30,7 +31,7 @@ private:
     
     gl::BatchRef collisionSphere;
     
-    vec3 mPosition;
+//    vec3 mPosition;
     vec3 speedPerSecond;
     
     float physicsRadius = 120;
@@ -44,8 +45,8 @@ private:
     short spinning_ = -1;
     float spinningCounter_ = 0;
     
-    vec3 tumbleAxis_ = vec3( 0, 1, 0 );
-    float tumbleSpeed_ = 0.0;
+    vec3 tumbleAxis_ = vec3( 1, 1, 0 );
+    float tumbleSpeedPerSecond = 1.0;
     float tumbleAngle_ = 0.0;
     
     float THIRD_OF_A_TURN  = ONE_TURN / 3.0f;

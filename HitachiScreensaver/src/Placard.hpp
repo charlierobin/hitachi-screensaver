@@ -9,34 +9,28 @@
 #include "cinder/Rand.h"
 
 #include "macros.h"
-#include "IItem.hpp"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class Placard: public IItem
+class Placard
 {
     
 public:
     
     Placard();
+    Placard( string );
     
-    void initialise();
-    void loadTexture( string );
+    void update( float );
+    void draw();
     
-    void randomise();
-    void setSpeed( float );
+private:
     
-    void update( float, std::vector<IItem *>, int ) override;
-    void draw( bool ) override;
-    
-protected:
-    
-    cinder::gl::BatchRef placard_;
+    gl::BatchRef placard_;
     
     float angle_ = 0.0;
-    float speedPerSecond_ = ONE_TURN / 25.0f;
+    float speedPerSecond_ = ONE_TURN / 20;
     
     float zRotation_ = 0.0f;
     float yRotation_ = 0.0f;

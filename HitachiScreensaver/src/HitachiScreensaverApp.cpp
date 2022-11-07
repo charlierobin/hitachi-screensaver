@@ -34,17 +34,20 @@ public:
 private:
     
     CameraPersp camera;
-    chrono::high_resolution_clock::time_point lastTimeSample;
-    vector<IItem *> items;
+    
     Sun * sun;
-    Surface renderedMask;
+    Starfield * starfield;
     LensFlare * flare;
     Lightning * lightning;
     
+    vector<Placard *> placards;
+    vector<Pyramid *> pyramids;
+    
+    HeroPyramid * heroPyramid;
+    
+    chrono::high_resolution_clock::time_point lastTimeSample;
     int counter = 0;
     int fps = 0;
-    
-    gl::FboRef buffer;
 };
 
 void HitachiScreensaverApp::setup()
@@ -58,20 +61,32 @@ void HitachiScreensaverApp::setup()
     
     this->camera.setFarClip( FAR_CLIP );
     
-    this->items.push_back( new Starfield() );
+    this->starfield = new Starfield();
     
-//    for ( int i = 0; i < NUMBER_OF_LOGOS; ++i ) this->items.push_back( new HitachiPlacard() );
-//    for ( int i = 0; i < NUMBER_OF_HICOMMANDS; ++i ) this->items.push_back( new HiCommandPlacard() );
-//    for ( int i = 0; i < NUMBER_OF_CAPTIONS; ++i ) this->items.push_back( new CaptionPlacard() );
+    for ( int i = 0; i < NUMBER_OF_LOGOS; ++i ) this->placards.push_back( new HitachiPlacard() );
+    for ( int i = 0; i < NUMBER_OF_HICOMMANDS; ++i ) this->placards.push_back( new HiCommandPlacard() );
+    for ( int i = 0; i < NUMBER_OF_CAPTIONS; ++i ) this->placards.push_back( new CaptionPlacard() );
     
-    this->items.push_back( new Pyramid( vec3( 40, 0, -100 ), vec3( -6, 0, 0 ) ) );
-    this->items.push_back( new Pyramid( vec3( -40, 0, -100 ), vec3( 6, 0, 0 ) ) );
     
-    //    this->items.push_back( new HeroPyramid() );
     
-//    this->flare = new LensFlare();
-//    this->sun = new Sun();
-//    this->lightning = new Lightning();
+    
+
+    
+    
+    
+    this->pyramids.push_back( new Pyramid( vec3( -10, -10, -100 ), vec3( 1, 0, 0 ) ) );
+    this->pyramids.push_back( new Pyramid( vec3( 10, 10, -200 ), vec3( -2, 0, 0 ) ) );
+    
+    
+    
+    
+    
+    
+    this->heroPyramid = new HeroPyramid();
+    
+    this->flare = new LensFlare();
+    this->sun = new Sun();
+    this->lightning = new Lightning();
     
     this->lastTimeSample = std::chrono::high_resolution_clock::now();
 }
@@ -79,7 +94,6 @@ void HitachiScreensaverApp::setup()
 void HitachiScreensaverApp::resize()
 {
     this->camera.setAspectRatio( this->getWindowAspectRatio() );
-    this->buffer = gl::Fbo::create( 640 * this->getWindowContentScale(), 480 * this->getWindowContentScale() );
 }
 
 void HitachiScreensaverApp::update()
@@ -90,9 +104,11 @@ void HitachiScreensaverApp::update()
     
     this->lastTimeSample = thisTimeSample;
     
-    for ( int i = 0; i < this->items.size(); ++i ) this->items[ i ]->update( seconds, this->items, i );
-
-//    this->sun->update( seconds, camera );
+    this->starfield->update( seconds );
+    for ( int i = 0; i < this->placards.size(); ++i ) this->placards[ i ]->update( seconds );
+    for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->update( seconds, this->pyramids, i );
+    this->heroPyramid->update( seconds );
+    this->sun->update( seconds, camera );
     
     this->counter++;
     
@@ -107,28 +123,6 @@ void HitachiScreensaverApp::update()
 
 void HitachiScreensaverApp::draw()
 {
-    this->buffer->bindFramebuffer();
-    
-    
-
-    
-    gl::setMatrices( this->camera );
-    
-    gl::enableDepthRead();
-    gl::enableDepthWrite();
-    
-    gl::clear( Color( 1, 1, 1 ) );
-    
-    for ( int i = 0; i < this->items.size(); ++i ) this->items[ i ]->draw( true );
-    
-    gl::setMatricesWindow( this->getWindowSize() );
-    
-    this->buffer->unbindFramebuffer();
-
-    
-
-
-    
     gl::setMatrices( this->camera );
     
     gl::enableDepthRead();
@@ -136,21 +130,72 @@ void HitachiScreensaverApp::draw()
     
     gl::clear();
     
-    for ( int i = 0; i < this->items.size(); ++i ) this->items[ i ]->draw( false );
-
+//    this->starfield->draw();
 //    this->sun->draw();
-//    this->flare->draw( false );
+//    for ( int i = 0; i < this->placards.size(); ++i ) this->placards[ i ]->draw();
+//    for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->draw();
+
 //    this->lightning->draw();
     
-    gl::setMatricesWindow( this->getWindowSize() );
+//    this->heroPyramid->draw();
     
-    gl::color( 1, 1, 1 );
     
-    gl::draw( this->buffer->getColorTexture(), this->buffer->getBounds(), Rectf( 50, 50, 100, 100 ) );
+    
+//    this->flare->position = this->sun->sunPositionOnScreen;
+    
+    
+    float scaledX = flare->position.x * this->getWindowContentScale();
+    float scaledY = flare->position.y * this->getWindowContentScale();
+    
+    Surface s = this->copyWindowSurface( Area( scaledX, scaledY, scaledX + 1, scaledY + 1 ) );
+    
+    int yellowCount = 0;
+
+    ColorA c = s.getPixel( vec2( 0, 0 ) );
+    
+    if ( c.r == 1 && c.g == 1 && c.b == 0 ) ++yellowCount;
+    
+    this->flare->intensity = yellowCount;
+    
+//    this->flare->draw();
+    
+//    gl::setMatricesWindow( this->getWindowSize() );
+    
+    
+    
+    
+    mat4 projection = this->camera.getProjectionMatrix() * this->camera.getViewMatrix();
+
+
+    vec4 viewport = vec4( 0, getWindowHeight(), getWindowWidth(), -getWindowHeight() );
+
+    vec3 worldCoordinate = unProject( vec3( getWindowWidth(), getWindowHeight(), 0.9999 ), mat4(), projection, viewport );
+    
+    cout << worldCoordinate << endl;
+    
+    
+    worldCoordinate = unProject( vec3( getWindowWidth(), getWindowHeight(), 0.9991 ), mat4(), projection, viewport );
+    
+    cout << worldCoordinate << endl;
+    
+    
+    
+    gl::context()->getStockShader( gl::ShaderDef().color() )->bind();
+
+    gl::color( 0, 1, 0 );
+
+    gl::pushModelMatrix();
+
+//    worldCoordinate = vec3( 0, 0, -100 );
+    
+    gl::drawSphere( worldCoordinate, 0.1 );
+
+    gl::popModelMatrix();
+    
 }
 
-CINDER_APP( HitachiScreensaverApp, RendererGl( RendererGl::Options().msaa( 2 ) ), [&]( App::Settings *settings )
+CINDER_APP( HitachiScreensaverApp, RendererGl( RendererGl::Options().msaa( 1 ) ), [&]( App::Settings *settings )
 {
     settings->setHighDensityDisplayEnabled();
-    settings->setWindowSize( 640, 480 );
+//    settings->setWindowSize( 640 * 2, 480 * 2 );
 })
