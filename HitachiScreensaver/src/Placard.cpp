@@ -38,7 +38,7 @@ void Placard::draw()
     
     gl::ScopedTextureBind tex0( texture_ );
     
-    cinder::gl::color( colour_ );
+    cinder::gl::color( 1.0, 1.0, 1.0, 1.0 );
     
     gl::pushModelMatrix();
     

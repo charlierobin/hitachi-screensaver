@@ -61,7 +61,7 @@ private:
 #define NUMBER_OF_STARS 200
 #define MAX_TWINKLE_FRAMES 64
 
-#define STAR_SIZE 40
+#define STAR_SIZE 20
 
 #endif /* Starfield_hpp */
 

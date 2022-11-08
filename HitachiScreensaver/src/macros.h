@@ -6,15 +6,17 @@
 #define HALF_A_TURN 3.141592653589793
 #define QUARTER_OF_A_TURN 1.570796326794897
 #define EIGHTH_OF_A_TURN 0.785398163397448
+#define ONE_DEGREE 0.017453292519943
 
-#define FAR_CLIP 20000.0f
+#define FAR_CLIP 10000
 
-#define CAMERA_POSITION cinder::vec3( 0, 0, 10 )
-#define CENTRE_OF_THE_WORLD cinder::vec3( 0, 0, 0 )
+#define CAMERA_POSITION vec3( 0, 0, 10 )
+#define CENTRE_OF_THE_WORLD vec3( 0, 0, 0 )
 
-#define ENVIRONMENT_RADIUS 990.0f
-#define ENVIRONMENT_COLLISION_RADIUS ( 110.0f )
+#define ENVIRONMENT_RADIUS 990
 
-#define STARS_Z 1950.0f
+#define STARS_Z 1950
+
+#define LIGHTNING_Z 150
 
 #endif /* macros_h */

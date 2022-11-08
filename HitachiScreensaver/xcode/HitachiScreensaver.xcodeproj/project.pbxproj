@@ -21,6 +21,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		CB1A5FA829080F7D004C7D12 /* Starfield.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB1A5FA629080F7D004C7D12 /* Starfield.cpp */; };
 		CB1A5FBF29091B38004C7D12 /* Pyramid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB1A5FBD29091B38004C7D12 /* Pyramid.cpp */; };
+		CB3AB02D291A51AB00981A26 /* lightning.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3AB02C291A51AB00981A26 /* lightning.png */; };
 		CB4972DA2913EBA100827D53 /* Sun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB4972D82913EBA100827D53 /* Sun.cpp */; };
 		CB608DAC2914FD020020407D /* Lightning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB608DAA2914FD020020407D /* Lightning.cpp */; };
 		CB608DB2291508410020407D /* lightning.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB608DB1291508410020407D /* lightning.jpg */; };
@@ -73,6 +74,7 @@
 		CB1A5FBB29083D28004C7D12 /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macros.h; path = ../src/macros.h; sourceTree = "<group>"; };
 		CB1A5FBD29091B38004C7D12 /* Pyramid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Pyramid.cpp; path = ../src/Pyramid.cpp; sourceTree = "<group>"; };
 		CB1A5FBE29091B38004C7D12 /* Pyramid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Pyramid.hpp; path = ../src/Pyramid.hpp; sourceTree = "<group>"; };
+		CB3AB02C291A51AB00981A26 /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightning.png; sourceTree = "<group>"; };
 		CB4972D82913EBA100827D53 /* Sun.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Sun.cpp; path = ../src/Sun.cpp; sourceTree = "<group>"; };
 		CB4972D92913EBA100827D53 /* Sun.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Sun.hpp; path = ../src/Sun.hpp; sourceTree = "<group>"; };
 		CB606C0A2914185E00762959 /* HiCommandPlacard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HiCommandPlacard.hpp; path = ../src/HiCommandPlacard.hpp; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			children = (
 				CBD7AF2B2916BBB9001942FB /* placards */,
 				CB608DB1291508410020407D /* lightning.jpg */,
+				CB3AB02C291A51AB00981A26 /* lightning.png */,
 				CBB3A23B2913A8A100B043CA /* uvGrid_512.png */,
 				CBD7AF282916BAAF001942FB /* uvGrid_512_with_alpha.png */,
 				CB81B59829126B3C00C251CE /* centre.jpg */,
@@ -352,6 +355,7 @@
 				CB608DB2291508410020407D /* lightning.jpg in Resources */,
 				CBA9827B290E55E500D7CB5D /* stars_back6.png in Resources */,
 				CBA98278290E55E500D7CB5D /* stars_bottom4.png in Resources */,
+				CB3AB02D291A51AB00981A26 /* lightning.png in Resources */,
 				CBB3A22E2913A73200B043CA /* billboard.obj in Resources */,
 				CBD7AF2E2916BF0F001942FB /* twinkle.png in Resources */,
 				CBB3A2302913A73200B043CA /* hds-logo.png in Resources */,

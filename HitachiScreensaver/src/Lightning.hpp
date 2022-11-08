@@ -1,6 +1,8 @@
 #ifndef Lightning_hpp
 #define Lightning_hpp
 
+#include "macros.h"
+
 using namespace ci;
 using namespace ci::app;
 

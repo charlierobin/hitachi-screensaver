@@ -3,9 +3,9 @@
 
 #include "cinder/ObjLoader.h"
 #include "cinder/Rand.h"
+#include "cinder/Timeline.h"
 
 #include "macros.h"
-
 #include "Tweening.hpp"
 
 using namespace ci;
@@ -17,25 +17,21 @@ class Pyramid
 public:
     
     Pyramid();
-    Pyramid( vec3, vec3 );
+//    Pyramid( vec3, vec3 );
+    Pyramid( vec3, vec3, vec3, vec3 );
     
-    void update( float, std::vector<Pyramid *>, int );
+    void update( float, CameraPersp );
+    void update( vec3, vec3, vec3, vec3 );
     void draw();
-    
-    vec3 mPosition;
     
 private:
     
-    std::vector<gl::BatchRef> slices_;
-    std::vector<gl::BatchRef> maskSlices;
+    void start();
     
-    gl::BatchRef collisionSphere;
-    
-//    vec3 mPosition;
-    vec3 speedPerSecond;
-    
-    float physicsRadius = 120;
-    float physicsDiameter = ( physicsRadius * 0.1 ) * 2;
+    std::vector<gl::BatchRef> slices;
+
+    vec3 mPosition = vec3( 0, 0, 500 );
+    vec3 speedPerSecond = vec3( 0, 0, 0 );
     
     bool flashing_ = false;
     int direction_ = 1;
@@ -50,9 +46,20 @@ private:
     float tumbleAngle_ = 0.0;
     
     float THIRD_OF_A_TURN  = ONE_TURN / 3.0f;
+    
+    vec3 topLeftNear;
+    vec3 bottomRightNear;
+    vec3 topLeftFar;
+    vec3 bottomRightFar;
+    
+    CueRef cue;
+    bool active = false;
+    bool activated = false;
 };
 
 #define FLASHING_COUNTER_MAX 3
 #define SPIN_COUNTER_MAX 120
+
+#define MARGIN 40
 
 #endif /* Pyramid_hpp */

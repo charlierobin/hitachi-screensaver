@@ -33,7 +33,7 @@ void HeroPyramid::update( float time )
     
     if ( ! busy && ! cued_ )
     {
-        CueRef cue = timeline().add( bind( &HeroPyramid::startComingIn, this ), timeline().getCurrentTime() + randFloat( 15.0f, 25.0f ) );
+        CueRef cue = timeline().add( bind( &HeroPyramid::startComingIn, this ), timeline().getCurrentTime() + randFloat( 30, 50 ) );
         cued_ = true;
     }
 }

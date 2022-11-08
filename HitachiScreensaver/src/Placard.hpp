@@ -36,7 +36,6 @@ private:
     float yRotation_ = 0.0f;
     
     gl::Texture2dRef texture_;
-    ColorA colour_ = ColorA( 1.0, 1.0, 1.0, 0.5 );
 };
 
 #endif /* Placard_hpp */

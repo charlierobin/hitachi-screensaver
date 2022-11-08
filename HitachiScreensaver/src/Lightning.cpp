@@ -2,7 +2,7 @@
 
 Lightning::Lightning()
 {
-    auto img = loadImage( loadResource( "lightning.jpg" ) );
+    auto img = loadImage( loadResource( "lightning.png" ) );
     this->texture = gl::Texture::create( img );
 }
 
@@ -19,16 +19,18 @@ void Lightning::draw()
     
     gl::color( 1, 1, 1 );
     
-//    gl::disableDepthRead();
-//    gl::disableDepthWrite();
+    gl::disableDepthRead();
+    gl::disableDepthWrite();
     
-    gl::disableAlphaBlending();
-    gl::enableAdditiveBlending();
+//    gl::disableAlphaBlending();
+//    gl::enableAdditiveBlending();
     
-    gl::drawBillboard( vec3( 0, 0, -150 ), vec2( 30, 65 ), 0 , vec3( 1, 0, 0 ), vec3( 0, -1, 0 ) );
+    gl::drawBillboard( vec3( -50, 0, -LIGHTNING_Z ), vec2( 60, 110 ), ONE_DEGREE * 10 , vec3( 1, 0, 0 ), vec3( 0, -1, 0 ) );
 
-    gl::enableAlphaBlending();
+    gl::drawBillboard( vec3( 50, 0, -LIGHTNING_Z ), vec2( 70, 120 ), ONE_DEGREE * -5 , vec3( 1, 0, 0 ), vec3( 0, -1, 0 ) );
     
-//    gl::enableDepth();
+//    gl::enableAlphaBlending();
+    
+    gl::enableDepth();
 }
 

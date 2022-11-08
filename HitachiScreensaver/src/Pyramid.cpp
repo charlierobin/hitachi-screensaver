@@ -4,36 +4,92 @@ Pyramid::Pyramid()
 {
     ObjLoader loader( loadResource( "pyramid.obj" ) );
     
-    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj1" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj2" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj3" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj4" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj5" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    this->slices_.push_back( gl::Batch::create( loader.groupName( "Obj6" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
-    
-    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj1" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
-    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj2" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
-    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj3" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
-    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj4" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
-    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj5" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
-    this->maskSlices.push_back( gl::Batch::create( loader.groupName( "Obj6" ), gl::context()->getStockShader( gl::ShaderDef().color() ) ) );
-    
-    auto sphere = geom::Sphere().subdivisions( 30 ).radius( physicsRadius );
-    
-    collisionSphere = gl::Batch::create( sphere, gl::context()->getStockShader( gl::ShaderDef().color() ) );
-    
-    this->mPosition = vec3( 0, 0, -100 );
-    this->speedPerSecond = vec3( 6, 0, 0 );
+    this->slices.push_back( gl::Batch::create( loader.groupName( "Obj1" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices.push_back( gl::Batch::create( loader.groupName( "Obj2" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices.push_back( gl::Batch::create( loader.groupName( "Obj3" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices.push_back( gl::Batch::create( loader.groupName( "Obj4" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices.push_back( gl::Batch::create( loader.groupName( "Obj5" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    this->slices.push_back( gl::Batch::create( loader.groupName( "Obj6" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
 }
 
-Pyramid::Pyramid( vec3 position, vec3 speed ) : Pyramid()
+//Pyramid::Pyramid( vec3 position, vec3 speed ) : Pyramid()
+//{
+//    this->mPosition = position;
+//    this->speedPerSecond = speed;
+//    this->tumbleAxis_ = vec3( randFloat( -1, 1 ), randFloat( -1, 1 ), randFloat( -1, 1 ) );
+//}
+
+Pyramid::Pyramid( vec3 topLeftNear, vec3 bottomRightNear, vec3 topLeftFar, vec3 bottomRightFar ) : Pyramid()
 {
-    this->mPosition = position;
-    this->speedPerSecond = speed;
+    this->topLeftNear = topLeftNear;
+    this->bottomRightNear = bottomRightNear;
+    this->topLeftFar = topLeftFar;
+    this->bottomRightFar = bottomRightFar;
+    
+    this->cue = timeline().add( std::bind( &Pyramid::start, this ), timeline().getCurrentTime() + randFloat( 5, 15 ) );
 }
 
-void Pyramid::update( float time, std::vector<Pyramid *> pyramids, int index )
+void Pyramid::start()
 {
+    this->active = true;
+    this->activated = false;
+    
+    switch ( randInt( 4 ) ) {
+            
+        case 0:
+        {
+            float y = randFloat( topLeftFar.y, bottomRightFar.y );
+            
+            this->mPosition = vec3( topLeftFar.x - MARGIN, y, topLeftFar.z );
+            this->speedPerSecond = vec3( randFloat( 4, 30 ), randFloat( -10, 10 ), randFloat( 4, 30 ) );
+        }
+            break;
+            
+        case 1:
+        {
+            float y = randFloat( topLeftFar.y, bottomRightFar.y );
+            
+            this->mPosition = vec3( bottomRightFar.x + MARGIN, y, topLeftFar.z );
+            this->speedPerSecond = vec3( randFloat( -4, -30 ), randFloat( -10, 10 ), randFloat( 4, 30 ) );
+        }
+            break;
+            
+        case 2:
+        {
+            float y = randFloat( topLeftNear.y, bottomRightNear.y );
+            
+            this->mPosition = vec3( topLeftNear.x - MARGIN, y, topLeftNear.z );
+            this->speedPerSecond = vec3( randFloat( 4, 30 ), randFloat( -10, 10 ), randFloat( -4, -30 ) );
+        }
+            break;
+            
+        case 3:
+        {
+            float y = randFloat( topLeftNear.y, bottomRightNear.y );
+            
+            this->mPosition = vec3( bottomRightNear.x + MARGIN, y, topLeftNear.z );
+            this->speedPerSecond = vec3( randFloat( -4, -30 ), randFloat( -10, 10 ), randFloat( -4, -30 ) );
+        }
+            break;
+            
+        default: break;
+    }
+    
+    this->tumbleAxis_ = vec3( randFloat( -1, 1 ), randFloat( -1, 1 ), randFloat( -1, 1 ) );
+}
+
+void Pyramid::update( vec3 topLeftNear, vec3 bottomRightNear, vec3 topLeftFar, vec3 bottomRightFar )
+{
+    this->topLeftNear = topLeftNear;
+    this->bottomRightNear = bottomRightNear;
+    this->topLeftFar = topLeftFar;
+    this->bottomRightFar = bottomRightFar;
+}
+
+void Pyramid::update( float time, CameraPersp camera )
+{
+    if ( ! this->active ) return;
+    
     tumbleAngle_ = tumbleAngle_ + ( tumbleSpeedPerSecond * time );
     
     if ( flashing_ )
@@ -43,7 +99,7 @@ void Pyramid::update( float time, std::vector<Pyramid *> pyramids, int index )
         {
             counter_ = 0;
             current_ = current_ + direction_;
-            if ( current_ < 0 || current_ > slices_.size() )
+            if ( current_ < 0 || current_ > slices.size() )
             {
                 flashing_ = false;
             }
@@ -61,7 +117,7 @@ void Pyramid::update( float time, std::vector<Pyramid *> pyramids, int index )
             }
             else
             {
-                current_ = slices_.size() - 1;
+                current_ = slices.size() - 1;
             }
         }
     }
@@ -75,46 +131,41 @@ void Pyramid::update( float time, std::vector<Pyramid *> pyramids, int index )
     {
         if ( randFloat( 0.0f, 1000.0f ) > 900.0f )
         {
-            spinning_ = randInt( 0, (slices_.size()& INT_MAX) - 1 );
+            spinning_ = randInt( 0, (slices.size()& INT_MAX) - 1 );
             spinningCounter_ = 0;
         }
     }
     
-//    for ( int i = index + 1; i < items.size(); ++i )
-//    {
-//        if(std::is_class<Pyramid>::value)
-//        {
-//            Pyramid* p = dynamic_cast<Pyramid*>( items[ i ] );
-//
-//            float distance = glm::distance( this->mPosition, p->mPosition );
-//
-//            if ( distance <= ( physicsDiameter ) )
-//            {
-//                this->speedPerSecond = this->speedPerSecond * vec3( -1, 0, 0 );
-//                p->speedPerSecond = p->speedPerSecond * vec3( -1, 0, 0 );
-//            }
-//        }
-//    }
-//
-//    float distanceFromCentre = glm::distance( this->mPosition, vec3( 0, 0, 0 ) );
-//
-//    if ( distanceFromCentre > ENVIRONMENT_COLLISION_RADIUS )
-//    {
-//        this->speedPerSecond = this->speedPerSecond * vec3( -1, -1, -1 );
-//    }
-    
     mPosition = mPosition + ( speedPerSecond * time );
+    
+    vec2 positionOnScreen = camera.worldToScreen( mPosition, getWindowWidth(), getWindowHeight() );
+    
+    if ( positionOnScreen.x > -MARGIN && positionOnScreen.x < getWindowWidth() + MARGIN && positionOnScreen.y > -MARGIN && positionOnScreen.y < getWindowHeight() + MARGIN )
+    {
+        this->activated = true;
+    }
+    else
+    {
+        if ( this->activated )
+        {
+            mPosition = vec3( 0, 0, 500 );
+            this->active = false;
+            this->cue = timeline().add( std::bind( &Pyramid::start, this ), timeline().getCurrentTime() + randFloat( 5, 30 ) );
+        }
+    }
 }
 
 void Pyramid::draw()
 {
+    if ( ! this->active ) return;
+    
     gl::pushModelMatrix();
     
     gl::translate( this->mPosition );
     gl::scale( 0.1, 0.1, 0.1 );
     gl::rotate( tumbleAngle_, tumbleAxis_ );
     
-    for ( int i = 0; i < slices_.size(); ++i )
+    for ( int i = 0; i < slices.size(); ++i )
     {
         if ( flashing_ && i == current_ )
         {
@@ -131,16 +182,13 @@ void Pyramid::draw()
             gl::rotate( Tweening::easeInOutCubic( spinningCounter_, 0.0f, THIRD_OF_A_TURN, SPIN_COUNTER_MAX ), vec3( 0, 1, 0 ) );
         }
         
-        slices_[ i ]->draw();
+        slices[ i ]->draw();
         
         if ( i == spinning_ )
         {
             gl::popModelMatrix();
         }
     }
-    
-    //    cinder::gl::color( 0.0, 1.0, 0.0 );
-    //    collisionSphere->draw();
     
     gl::popModelMatrix();
 }
