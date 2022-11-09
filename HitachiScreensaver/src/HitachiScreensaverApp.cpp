@@ -6,7 +6,7 @@
 #include "Pyramid.hpp"
 #include "Starfield.hpp"
 #include "Sun.hpp"
-#include "LensFlare.hpp"
+#include "HitachiLensFlare.hpp"
 #include "HitachiPlacard.hpp"
 #include "HiCommandPlacard.hpp"
 #include "CaptionPlacard.hpp"
@@ -42,7 +42,7 @@ private:
     vec3 bottomRightFar;
     
     Starfield * starfield;
-    LensFlare * flare;
+    HitachiLensFlare * flare;
     Sun * sun;
     Lightning * lightning;
     
@@ -78,7 +78,7 @@ void HitachiScreensaverApp::setup()
     
     this->heroPyramid = new HeroPyramid();
     
-    this->flare = new LensFlare();
+    this->flare = new HitachiLensFlare();
     this->sun = new Sun();
     this->lightning = new Lightning();
     
@@ -105,7 +105,7 @@ void HitachiScreensaverApp::resize()
     
     //    cout << "far: " << this->topLeftFar << " to " << this->bottomRightFar << endl;
     
-    for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->update( this->topLeftNear, this->bottomRightNear, this->topLeftFar, this->bottomRightFar );
+    for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->update( getWindowWidth(), this->topLeftNear, this->bottomRightNear, this->topLeftFar, this->bottomRightFar );
 }
 
 void HitachiScreensaverApp::update()
@@ -114,7 +114,7 @@ void HitachiScreensaverApp::update()
     {
         for ( int i = 0; i < NUMBER_OF_LITTLE_PYRAMIDS; ++i )
         {
-            this->pyramids.push_back( new Pyramid( this->topLeftNear, this->bottomRightNear, this->topLeftFar, this->bottomRightFar ) );
+            this->pyramids.push_back( new Pyramid( getWindowWidth(), this->topLeftNear, this->bottomRightNear, this->topLeftFar, this->bottomRightFar ) );
         }
     }
     
@@ -125,6 +125,8 @@ void HitachiScreensaverApp::update()
     this->lastTimeSample = thisTimeSample;
     
     this->starfield->update( seconds );
+    this->lightning->update();
+    
     for ( int i = 0; i < this->placards.size(); ++i ) this->placards[ i ]->update( seconds );
     for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->update( seconds, this->camera );
     this->heroPyramid->update( seconds );

@@ -18,10 +18,10 @@ public:
     
     Pyramid();
 //    Pyramid( vec3, vec3 );
-    Pyramid( vec3, vec3, vec3, vec3 );
+    Pyramid( float, vec3, vec3, vec3, vec3 );
     
     void update( float, CameraPersp );
-    void update( vec3, vec3, vec3, vec3 );
+    void update( float, vec3, vec3, vec3, vec3 );
     void draw();
     
 private:
@@ -47,6 +47,8 @@ private:
     
     float THIRD_OF_A_TURN  = ONE_TURN / 3.0f;
     
+    float margin;
+    
     vec3 topLeftNear;
     vec3 bottomRightNear;
     vec3 topLeftFar;
@@ -60,6 +62,6 @@ private:
 #define FLASHING_COUNTER_MAX 3
 #define SPIN_COUNTER_MAX 120
 
-#define MARGIN 40
+#define MARGIN_DEFAULT 40.0
 
 #endif /* Pyramid_hpp */

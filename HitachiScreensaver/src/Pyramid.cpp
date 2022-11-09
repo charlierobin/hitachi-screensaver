@@ -10,6 +10,8 @@ Pyramid::Pyramid()
     this->slices.push_back( gl::Batch::create( loader.groupName( "Obj4" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
     this->slices.push_back( gl::Batch::create( loader.groupName( "Obj5" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
     this->slices.push_back( gl::Batch::create( loader.groupName( "Obj6" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
+    
+    this->margin = MARGIN_DEFAULT;
 }
 
 //Pyramid::Pyramid( vec3 position, vec3 speed ) : Pyramid()
@@ -19,8 +21,10 @@ Pyramid::Pyramid()
 //    this->tumbleAxis_ = vec3( randFloat( -1, 1 ), randFloat( -1, 1 ), randFloat( -1, 1 ) );
 //}
 
-Pyramid::Pyramid( vec3 topLeftNear, vec3 bottomRightNear, vec3 topLeftFar, vec3 bottomRightFar ) : Pyramid()
+Pyramid::Pyramid( float width, vec3 topLeftNear, vec3 bottomRightNear, vec3 topLeftFar, vec3 bottomRightFar ) : Pyramid()
 {
+    this->margin = MARGIN_DEFAULT + ( ( width - 640 ) / 640 );
+    
     this->topLeftNear = topLeftNear;
     this->bottomRightNear = bottomRightNear;
     this->topLeftFar = topLeftFar;
@@ -40,7 +44,7 @@ void Pyramid::start()
         {
             float y = randFloat( topLeftFar.y, bottomRightFar.y );
             
-            this->mPosition = vec3( topLeftFar.x - MARGIN, y, topLeftFar.z );
+            this->mPosition = vec3( topLeftFar.x - this->margin, y, topLeftFar.z );
             this->speedPerSecond = vec3( randFloat( 4, 30 ), randFloat( -10, 10 ), randFloat( 4, 30 ) );
         }
             break;
@@ -49,7 +53,7 @@ void Pyramid::start()
         {
             float y = randFloat( topLeftFar.y, bottomRightFar.y );
             
-            this->mPosition = vec3( bottomRightFar.x + MARGIN, y, topLeftFar.z );
+            this->mPosition = vec3( bottomRightFar.x + this->margin, y, topLeftFar.z );
             this->speedPerSecond = vec3( randFloat( -4, -30 ), randFloat( -10, 10 ), randFloat( 4, 30 ) );
         }
             break;
@@ -58,7 +62,7 @@ void Pyramid::start()
         {
             float y = randFloat( topLeftNear.y, bottomRightNear.y );
             
-            this->mPosition = vec3( topLeftNear.x - MARGIN, y, topLeftNear.z );
+            this->mPosition = vec3( topLeftNear.x - this->margin, y, topLeftNear.z );
             this->speedPerSecond = vec3( randFloat( 4, 30 ), randFloat( -10, 10 ), randFloat( -4, -30 ) );
         }
             break;
@@ -67,19 +71,24 @@ void Pyramid::start()
         {
             float y = randFloat( topLeftNear.y, bottomRightNear.y );
             
-            this->mPosition = vec3( bottomRightNear.x + MARGIN, y, topLeftNear.z );
+            this->mPosition = vec3( bottomRightNear.x + this->margin, y, topLeftNear.z );
             this->speedPerSecond = vec3( randFloat( -4, -30 ), randFloat( -10, 10 ), randFloat( -4, -30 ) );
         }
             break;
             
-        default: break;
+        default:
+            
+            throw new Exception( "Bad random value for pyramid" );
+            break;
     }
     
     this->tumbleAxis_ = vec3( randFloat( -1, 1 ), randFloat( -1, 1 ), randFloat( -1, 1 ) );
 }
 
-void Pyramid::update( vec3 topLeftNear, vec3 bottomRightNear, vec3 topLeftFar, vec3 bottomRightFar )
+void Pyramid::update( float width, vec3 topLeftNear, vec3 bottomRightNear, vec3 topLeftFar, vec3 bottomRightFar )
 {
+    this->margin = MARGIN_DEFAULT + ( ( width - 640 ) / 640 );
+    
     this->topLeftNear = topLeftNear;
     this->bottomRightNear = bottomRightNear;
     this->topLeftFar = topLeftFar;
@@ -131,7 +140,7 @@ void Pyramid::update( float time, CameraPersp camera )
     {
         if ( randFloat( 0.0f, 1000.0f ) > 900.0f )
         {
-            spinning_ = randInt( 0, (slices.size()& INT_MAX) - 1 );
+            spinning_ = randInt( 0, ( slices.size() & INT_MAX ) - 1 );
             spinningCounter_ = 0;
         }
     }
@@ -140,7 +149,9 @@ void Pyramid::update( float time, CameraPersp camera )
     
     vec2 positionOnScreen = camera.worldToScreen( mPosition, getWindowWidth(), getWindowHeight() );
     
-    if ( positionOnScreen.x > -MARGIN && positionOnScreen.x < getWindowWidth() + MARGIN && positionOnScreen.y > -MARGIN && positionOnScreen.y < getWindowHeight() + MARGIN )
+    Rectf bounds = Rectf( -this->margin, -this->margin, getWindowWidth() + this->margin, getWindowHeight() + this->margin );
+    
+    if( bounds.contains( positionOnScreen ) )
     {
         this->activated = true;
     }
@@ -165,15 +176,23 @@ void Pyramid::draw()
     gl::scale( 0.1, 0.1, 0.1 );
     gl::rotate( tumbleAngle_, tumbleAxis_ );
     
+    float distance = glm::distance( this->mPosition, vec3( 0, 0, -200 ) );
+    
+    distance = 0.5 + ( 0.5 * ( 1.0 - ( distance / 1100.0 ) ) );
+    
+    if ( distance > 1.0 ) distance = 1.0;
+    
+//    std::cout << distance << std::endl;
+    
     for ( int i = 0; i < slices.size(); ++i )
     {
         if ( flashing_ && i == current_ )
         {
-            gl::color( 1.0, 1.0, 1.0 );
+            gl::color( 1, 1, 1 );
         }
         else
         {
-            gl::color( 0.937254901960784f, 0.105882352941176f, 0.203921568627451f );
+            gl::color( 0.937254901960784 * distance, 0.105882352941176 * distance, 0.203921568627451 * distance );
         }
         
         if ( i == spinning_ )
