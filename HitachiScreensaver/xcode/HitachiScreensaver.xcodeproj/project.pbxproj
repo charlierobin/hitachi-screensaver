@@ -272,7 +272,6 @@
 		CB4D26E7291BA69500F76D30 /* lightning_003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB4D25ED291BA69500F76D30 /* lightning_003.jpg */; };
 		CB4D26E8291BA69500F76D30 /* lightning_029.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB4D25EE291BA69500F76D30 /* lightning_029.jpg */; };
 		CB4D26E9291BA69500F76D30 /* lightning_142.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB4D25EF291BA69500F76D30 /* lightning_142.jpg */; };
-		CB4D2741291BFA6800F76D30 /* HitachiLensFlare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB4D273F291BFA6800F76D30 /* HitachiLensFlare.cpp */; };
 		CB4D2746291BFB6A00F76D30 /* LensFlare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB4D2744291BFB6A00F76D30 /* LensFlare.cpp */; };
 		CB4D2755291C047C00F76D30 /* LensFlareCentre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB4D2753291C047C00F76D30 /* LensFlareCentre.cpp */; };
 		CB608DAC2914FD020020407D /* Lightning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB608DAA2914FD020020407D /* Lightning.cpp */; };
@@ -299,6 +298,20 @@
 		CBB3A23C2913A8A100B043CA /* uvGrid_512.png in Resources */ = {isa = PBXBuildFile; fileRef = CBB3A23B2913A8A100B043CA /* uvGrid_512.png */; };
 		CBD7AF292916BAAF001942FB /* uvGrid_512_with_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AF282916BAAF001942FB /* uvGrid_512_with_alpha.png */; };
 		CBD7AF2E2916BF0F001942FB /* twinkle.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD7AF2D2916BF0F001942FB /* twinkle.png */; };
+		CBF1590A291CE30A002A6131 /* glow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF15909291CE30A002A6131 /* glow.jpg */; };
+		CBF15910291CE6E9002A6131 /* aperture-flare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF1590F291CE6E9002A6131 /* aperture-flare.jpg */; };
+		CBF15915291CE75C002A6131 /* LensFlareApertureReflection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBF15913291CE75C002A6131 /* LensFlareApertureReflection.cpp */; };
+		CBF1591A291D1410002A6131 /* pentagon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF15918291D1410002A6131 /* pentagon.jpg */; };
+		CBF1591B291D1410002A6131 /* octagon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF15919291D1410002A6131 /* octagon.jpg */; };
+		CBF15924291D143B002A6131 /* fading-ring-outer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF1591D291D143B002A6131 /* fading-ring-outer.jpg */; };
+		CBF15925291D143B002A6131 /* chroma-hoop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF1591E291D143B002A6131 /* chroma-hoop.jpg */; };
+		CBF15926291D143B002A6131 /* fan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF1591F291D143B002A6131 /* fan.jpg */; };
+		CBF15927291D143B002A6131 /* fading-ring-inner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF15920291D143B002A6131 /* fading-ring-inner.jpg */; };
+		CBF15928291D143B002A6131 /* photon-spike.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF15921291D143B002A6131 /* photon-spike.jpg */; };
+		CBF15929291D143B002A6131 /* ring.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF15922291D143B002A6131 /* ring.jpg */; };
+		CBF1592A291D143B002A6131 /* filled-ring.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CBF15923291D143B002A6131 /* filled-ring.jpg */; };
+		CBF1592E291D6859002A6131 /* LensFlareChromaHoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBF1592C291D6859002A6131 /* LensFlareChromaHoop.cpp */; };
+		CBF15932291D6C48002A6131 /* LensFlareChromaFans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBF15930291D6C48002A6131 /* LensFlareChromaFans.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -576,7 +589,6 @@
 		CB4D25ED291BA69500F76D30 /* lightning_003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lightning_003.jpg; sourceTree = "<group>"; };
 		CB4D25EE291BA69500F76D30 /* lightning_029.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lightning_029.jpg; sourceTree = "<group>"; };
 		CB4D25EF291BA69500F76D30 /* lightning_142.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lightning_142.jpg; sourceTree = "<group>"; };
-		CB4D273F291BFA6800F76D30 /* HitachiLensFlare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HitachiLensFlare.cpp; path = ../src/HitachiLensFlare.cpp; sourceTree = "<group>"; };
 		CB4D2740291BFA6800F76D30 /* HitachiLensFlare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HitachiLensFlare.hpp; path = ../src/HitachiLensFlare.hpp; sourceTree = "<group>"; };
 		CB4D2744291BFB6A00F76D30 /* LensFlare.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LensFlare.cpp; sourceTree = "<group>"; };
 		CB4D2745291BFB6A00F76D30 /* LensFlare.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LensFlare.hpp; sourceTree = "<group>"; };
@@ -615,6 +627,24 @@
 		CBB3A23B2913A8A100B043CA /* uvGrid_512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uvGrid_512.png; sourceTree = "<group>"; };
 		CBD7AF282916BAAF001942FB /* uvGrid_512_with_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uvGrid_512_with_alpha.png; sourceTree = "<group>"; };
 		CBD7AF2D2916BF0F001942FB /* twinkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twinkle.png; sourceTree = "<group>"; };
+		CBF15904291CE1F6002A6131 /* LensFlareCentralGlow.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LensFlareCentralGlow.hpp; sourceTree = "<group>"; };
+		CBF15909291CE30A002A6131 /* glow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = glow.jpg; sourceTree = "<group>"; };
+		CBF1590F291CE6E9002A6131 /* aperture-flare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "aperture-flare.jpg"; sourceTree = "<group>"; };
+		CBF15913291CE75C002A6131 /* LensFlareApertureReflection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LensFlareApertureReflection.cpp; sourceTree = "<group>"; };
+		CBF15914291CE75C002A6131 /* LensFlareApertureReflection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LensFlareApertureReflection.hpp; sourceTree = "<group>"; };
+		CBF15918291D1410002A6131 /* pentagon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pentagon.jpg; sourceTree = "<group>"; };
+		CBF15919291D1410002A6131 /* octagon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = octagon.jpg; sourceTree = "<group>"; };
+		CBF1591D291D143B002A6131 /* fading-ring-outer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fading-ring-outer.jpg"; sourceTree = "<group>"; };
+		CBF1591E291D143B002A6131 /* chroma-hoop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "chroma-hoop.jpg"; sourceTree = "<group>"; };
+		CBF1591F291D143B002A6131 /* fan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fan.jpg; sourceTree = "<group>"; };
+		CBF15920291D143B002A6131 /* fading-ring-inner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fading-ring-inner.jpg"; sourceTree = "<group>"; };
+		CBF15921291D143B002A6131 /* photon-spike.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "photon-spike.jpg"; sourceTree = "<group>"; };
+		CBF15922291D143B002A6131 /* ring.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ring.jpg; sourceTree = "<group>"; };
+		CBF15923291D143B002A6131 /* filled-ring.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "filled-ring.jpg"; sourceTree = "<group>"; };
+		CBF1592C291D6859002A6131 /* LensFlareChromaHoop.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LensFlareChromaHoop.cpp; sourceTree = "<group>"; };
+		CBF1592D291D6859002A6131 /* LensFlareChromaHoop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LensFlareChromaHoop.hpp; sourceTree = "<group>"; };
+		CBF15930291D6C48002A6131 /* LensFlareChromaFans.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LensFlareChromaFans.cpp; sourceTree = "<group>"; };
+		CBF15931291D6C48002A6131 /* LensFlareChromaFans.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LensFlareChromaFans.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -658,7 +688,6 @@
 				CB606C0A2914185E00762959 /* HiCommandPlacard.hpp */,
 				CBB3A2342913A7FD00B043CA /* HitachiPlacard.hpp */,
 				2CB70EF25E964E14B7231FEC /* HitachiScreensaverApp.cpp */,
-				CB4D273F291BFA6800F76D30 /* HitachiLensFlare.cpp */,
 				CB4D2740291BFA6800F76D30 /* HitachiLensFlare.hpp */,
 				CB608DAA2914FD020020407D /* Lightning.cpp */,
 				CB608DAB2914FD020020407D /* Lightning.hpp */,
@@ -746,10 +775,15 @@
 		CB4D26ED291BF69500F76D30 /* lens flares */ = {
 			isa = PBXGroup;
 			children = (
+				CBF15912291CE73A002A6131 /* aperture reflections */,
 				CB4D2752291C047C00F76D30 /* centres */,
 				CB4D2744291BFB6A00F76D30 /* LensFlare.cpp */,
 				CB4D2745291BFB6A00F76D30 /* LensFlare.hpp */,
 				CB4D2749291BFC9200F76D30 /* LensFlareElement.hpp */,
+				CBF1592C291D6859002A6131 /* LensFlareChromaHoop.cpp */,
+				CBF1592D291D6859002A6131 /* LensFlareChromaHoop.hpp */,
+				CBF15930291D6C48002A6131 /* LensFlareChromaFans.cpp */,
+				CBF15931291D6C48002A6131 /* LensFlareChromaFans.hpp */,
 			);
 			name = "lens flares";
 			path = "../src/lens flares";
@@ -760,6 +794,7 @@
 			children = (
 				CB4D2753291C047C00F76D30 /* LensFlareCentre.cpp */,
 				CB4D2754291C047C00F76D30 /* LensFlareCentre.hpp */,
+				CBF15904291CE1F6002A6131 /* LensFlareCentralGlow.hpp */,
 			);
 			path = centres;
 			sourceTree = "<group>";
@@ -767,11 +802,11 @@
 		CBA9826C290E55E500D7CB5D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CBF15907291CE2AC002A6131 /* lens flares */,
 				CBEEEAA3291B97B6005D8B63 /* lightning */,
 				CBD7AF2B2916BBB9001942FB /* placards */,
 				CBB3A23B2913A8A100B043CA /* uvGrid_512.png */,
 				CBD7AF282916BAAF001942FB /* uvGrid_512_with_alpha.png */,
-				CB81B59829126B3C00C251CE /* centre.jpg */,
 				CB81B5902911400A00C251CE /* text-bits.png */,
 				CBA9826D290E55E500D7CB5D /* starfield */,
 				CBA98275290E55E500D7CB5D /* pyramid */,
@@ -1073,6 +1108,50 @@
 			path = lightning;
 			sourceTree = "<group>";
 		};
+		CBF15907291CE2AC002A6131 /* lens flares */ = {
+			isa = PBXGroup;
+			children = (
+				CBF1591E291D143B002A6131 /* chroma-hoop.jpg */,
+				CBF15920291D143B002A6131 /* fading-ring-inner.jpg */,
+				CBF1591D291D143B002A6131 /* fading-ring-outer.jpg */,
+				CBF1591F291D143B002A6131 /* fan.jpg */,
+				CBF15923291D143B002A6131 /* filled-ring.jpg */,
+				CBF15921291D143B002A6131 /* photon-spike.jpg */,
+				CBF15922291D143B002A6131 /* ring.jpg */,
+				CBF15919291D1410002A6131 /* octagon.jpg */,
+				CBF15918291D1410002A6131 /* pentagon.jpg */,
+				CBF1590E291CE6BD002A6131 /* aperture refelections */,
+				CBF15908291CE2C0002A6131 /* centres */,
+			);
+			path = "lens flares";
+			sourceTree = "<group>";
+		};
+		CBF15908291CE2C0002A6131 /* centres */ = {
+			isa = PBXGroup;
+			children = (
+				CBF15909291CE30A002A6131 /* glow.jpg */,
+				CB81B59829126B3C00C251CE /* centre.jpg */,
+			);
+			path = centres;
+			sourceTree = "<group>";
+		};
+		CBF1590E291CE6BD002A6131 /* aperture refelections */ = {
+			isa = PBXGroup;
+			children = (
+				CBF1590F291CE6E9002A6131 /* aperture-flare.jpg */,
+			);
+			path = "aperture refelections";
+			sourceTree = "<group>";
+		};
+		CBF15912291CE73A002A6131 /* aperture reflections */ = {
+			isa = PBXGroup;
+			children = (
+				CBF15913291CE75C002A6131 /* LensFlareApertureReflection.cpp */,
+				CBF15914291CE75C002A6131 /* LensFlareApertureReflection.hpp */,
+			);
+			path = "aperture reflections";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1138,6 +1217,7 @@
 				CB4D263A291BA69500F76D30 /* lightning_197.jpg in Resources */,
 				CB4D25F0291BA69500F76D30 /* lightning_038.jpg in Resources */,
 				CB4D26C4291BA69500F76D30 /* lightning_088.jpg in Resources */,
+				CBF15924291D143B002A6131 /* fading-ring-outer.jpg in Resources */,
 				CB4D2642291BA69500F76D30 /* lightning_146.jpg in Resources */,
 				CB4D2621291BA69500F76D30 /* lightning_164.jpg in Resources */,
 				CB4D26E6291BA69500F76D30 /* lightning_166.jpg in Resources */,
@@ -1164,6 +1244,7 @@
 				CB4D2680291BA69500F76D30 /* lightning_152.jpg in Resources */,
 				CB4D26C6291BA69500F76D30 /* lightning_247.jpg in Resources */,
 				CB4D2629291BA69500F76D30 /* lightning_201.jpg in Resources */,
+				CBF1591B291D1410002A6131 /* octagon.jpg in Resources */,
 				CBB3A2312913A73200B043CA /* simplify.png in Resources */,
 				CB4D26A7291BA69500F76D30 /* lightning_133.jpg in Resources */,
 				CB4D2647291BA69500F76D30 /* lightning_084.jpg in Resources */,
@@ -1188,6 +1269,7 @@
 				CB81B59A29126B3C00C251CE /* centre.jpg in Resources */,
 				CB4D26A4291BA69500F76D30 /* lightning_200.jpg in Resources */,
 				CB4D2688291BA69500F76D30 /* lightning_212.jpg in Resources */,
+				CBF15927291D143B002A6131 /* fading-ring-inner.jpg in Resources */,
 				CB4D26BE291BA69500F76D30 /* lightning_055.jpg in Resources */,
 				CB4D26DA291BA69500F76D30 /* lightning_160.jpg in Resources */,
 				CB4D262F291BA69500F76D30 /* lightning_008.jpg in Resources */,
@@ -1204,6 +1286,7 @@
 				CB4D2678291BA69500F76D30 /* lightning_119.jpg in Resources */,
 				CB4D2684291BA69500F76D30 /* lightning_058.jpg in Resources */,
 				CB4D26A9291BA69500F76D30 /* lightning_094.jpg in Resources */,
+				CBF1590A291CE30A002A6131 /* glow.jpg in Resources */,
 				CB4D2637291BA69500F76D30 /* lightning_248.jpg in Resources */,
 				CB4D26A0291BA69500F76D30 /* lightning_065.jpg in Resources */,
 				CB4D264E291BA69500F76D30 /* lightning_170.jpg in Resources */,
@@ -1230,6 +1313,7 @@
 				CB4D26A8291BA69500F76D30 /* lightning_124.jpg in Resources */,
 				CB4D2645291BA69500F76D30 /* lightning_236.jpg in Resources */,
 				CB4D2622291BA69500F76D30 /* lightning_171.jpg in Resources */,
+				CBF1591A291D1410002A6131 /* pentagon.jpg in Resources */,
 				CBB3A22E2913A73200B043CA /* billboard.obj in Resources */,
 				CB4D2670291BA69500F76D30 /* lightning_157.jpg in Resources */,
 				CBD7AF2E2916BF0F001942FB /* twinkle.png in Resources */,
@@ -1281,6 +1365,7 @@
 				CB4D26E3291BA69500F76D30 /* lightning_052.jpg in Resources */,
 				CB4D2608291BA69500F76D30 /* lightning_102.jpg in Resources */,
 				CB4D2635291BA69500F76D30 /* lightning_059.jpg in Resources */,
+				CBF15928291D143B002A6131 /* photon-spike.jpg in Resources */,
 				CB4D26CC291BA69500F76D30 /* lightning_187.jpg in Resources */,
 				CB81B5912911400A00C251CE /* text-bits.png in Resources */,
 				CB4D26AE291BA69500F76D30 /* lightning_239.jpg in Resources */,
@@ -1318,11 +1403,13 @@
 				CB4D26B4291BA69500F76D30 /* lightning_203.jpg in Resources */,
 				CB4D267F291BA69500F76D30 /* lightning_231.jpg in Resources */,
 				CB4D269B291BA69500F76D30 /* lightning_167.jpg in Resources */,
+				CBF15925291D143B002A6131 /* chroma-hoop.jpg in Resources */,
 				CB4D264B291BA69500F76D30 /* lightning_004.jpg in Resources */,
 				CB4D26D5291BA69500F76D30 /* lightning_026.jpg in Resources */,
 				CB4D26E4291BA69500F76D30 /* lightning_108.jpg in Resources */,
 				CB4D26BA291BA69500F76D30 /* lightning_175.jpg in Resources */,
 				CB4D2682291BA69500F76D30 /* lightning_191.jpg in Resources */,
+				CBF15929291D143B002A6131 /* ring.jpg in Resources */,
 				CB4D264D291BA69500F76D30 /* lightning_045.jpg in Resources */,
 				CB4D2672291BA69500F76D30 /* lightning_233.jpg in Resources */,
 				CB4D2606291BA69500F76D30 /* lightning_192.jpg in Resources */,
@@ -1345,6 +1432,7 @@
 				CBA9827A290E55E500D7CB5D /* stars_top3.png in Resources */,
 				CBA9827F290E55E500D7CB5D /* pyramid.obj in Resources */,
 				CB4D261B291BA69500F76D30 /* lightning_100.jpg in Resources */,
+				CBF15910291CE6E9002A6131 /* aperture-flare.jpg in Resources */,
 				CB4D262C291BA69500F76D30 /* lightning_243.jpg in Resources */,
 				CBA9827E290E55E500D7CB5D /* stars_front5.png in Resources */,
 				CB4D2644291BA69500F76D30 /* lightning_089.jpg in Resources */,
@@ -1353,6 +1441,7 @@
 				CB4D26D0291BA69500F76D30 /* lightning_208.jpg in Resources */,
 				CB4D26CF291BA69500F76D30 /* lightning_056.jpg in Resources */,
 				CB4D26B2291BA69500F76D30 /* lightning_011.jpg in Resources */,
+				CBF15926291D143B002A6131 /* fan.jpg in Resources */,
 				CB4D268B291BA69500F76D30 /* lightning_109.jpg in Resources */,
 				CB4D26AC291BA69500F76D30 /* lightning_182.jpg in Resources */,
 				CB4D2690291BA69500F76D30 /* lightning_018.jpg in Resources */,
@@ -1369,6 +1458,7 @@
 				CB4D26D9291BA69500F76D30 /* lightning_078.jpg in Resources */,
 				CB4D2626291BA69500F76D30 /* lightning_085.jpg in Resources */,
 				CB4D2640291BA69500F76D30 /* lightning_031.jpg in Resources */,
+				CBF1592A291D143B002A6131 /* filled-ring.jpg in Resources */,
 				CB4D260F291BA69500F76D30 /* lightning_076.jpg in Resources */,
 				CB4D2603291BA69500F76D30 /* lightning_092.jpg in Resources */,
 				CB4D26AF291BA69500F76D30 /* lightning_115.jpg in Resources */,
@@ -1429,13 +1519,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBB3A2392913A83900B043CA /* Placard.cpp in Sources */,
+				CBF1592E291D6859002A6131 /* LensFlareChromaHoop.cpp in Sources */,
 				CB4D2746291BFB6A00F76D30 /* LensFlare.cpp in Sources */,
 				CB1A5FA829080F7D004C7D12 /* Starfield.cpp in Sources */,
 				CB4D2755291C047C00F76D30 /* LensFlareCentre.cpp in Sources */,
 				CB1A5FBF29091B38004C7D12 /* Pyramid.cpp in Sources */,
-				CB4D2741291BFA6800F76D30 /* HitachiLensFlare.cpp in Sources */,
+				CBF15932291D6C48002A6131 /* LensFlareChromaFans.cpp in Sources */,
 				CB4972DA2913EBA100827D53 /* Sun.cpp in Sources */,
 				CB81B58829111A4500C251CE /* HeroPyramid.cpp in Sources */,
+				CBF15915291CE75C002A6131 /* LensFlareApertureReflection.cpp in Sources */,
 				CBAA1DCD290BF62A00E0AC51 /* Tweening.cpp in Sources */,
 				1BD708E6D7004B4F844BE18D /* HitachiScreensaverApp.cpp in Sources */,
 				CB81B58D29113BF200C251CE /* HeroPyramidSlice.cpp in Sources */,

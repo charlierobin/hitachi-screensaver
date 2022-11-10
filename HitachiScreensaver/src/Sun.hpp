@@ -6,8 +6,8 @@
 
 #include "macros.h"
 
-#define SUN_RADIUS 2.0f
-#define SUN_ORBIT_RADIUS ENVIRONMENT_RADIUS - 50.0f
+#define SUN_RADIUS 4.0
+#define SUN_ORBIT_RADIUS ENVIRONMENT_RADIUS - 50.0
 
 #define AROUND_X_AXIS cinder::vec3( 1, 0, 0 )
 #define AROUND_Y_AXIS cinder::vec3( 0, 1, 0 )
@@ -24,14 +24,15 @@ public:
     void update( float, CameraPersp );
     void draw();
     
-    bool isOnScreen();
+    vec2 positionOnScreen;
+    bool onScreen;
     
-    float sunAngle_ = 0.0f;
+private:
     
-    vec3 sunPosition_ = vec3( 0.0f, 0.0f, SUN_ORBIT_RADIUS );
-    vec2 sunPositionOnScreen;
+    float speed = 0.1;
     
-    float speed = 0.5;
+    float angle = 0.0;
+    vec3 position = vec3( 0, 0, SUN_ORBIT_RADIUS );
 };
 
 #endif /* Sun_hpp */

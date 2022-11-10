@@ -22,7 +22,7 @@ void LensFlare::draw()
     {
         gl::ScopedModelMatrix scope;
         
-        element->draw( this->position, this->intensity );
+        element->draw( this->position, this->onScreen, this->intensity );
     }
     
     gl::enableAlphaBlending();

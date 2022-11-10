@@ -2,16 +2,18 @@
 
 void Sun::update( float time, CameraPersp camera )
 {
-    sunAngle_ = sunAngle_ + ( time * speed );
+    angle = angle + ( time * speed );
     
     float zTurn = ONE_TURN / 20;
     
-    sunPosition_ = vec3( 0.0f, 0.0f, SUN_ORBIT_RADIUS );
+    position = vec3( 0.0f, 0.0f, SUN_ORBIT_RADIUS );
     
-    sunPosition_ = glm::rotate( sunPosition_, sunAngle_, AROUND_Y_AXIS );
-    sunPosition_ = glm::rotate( sunPosition_, zTurn, AROUND_Z_AXIS );
+    position = glm::rotate( position, angle, AROUND_Y_AXIS );
+    position = glm::rotate( position, zTurn, AROUND_Z_AXIS );
     
-    sunPositionOnScreen = camera.worldToScreen( sunPosition_, getWindowWidth(), getWindowHeight() );
+    onScreen = position.z < 0 ? true : false;
+    
+    positionOnScreen = camera.worldToScreen( position, getWindowWidth(), getWindowHeight() );
 }
 
 void Sun::draw()
@@ -22,20 +24,8 @@ void Sun::draw()
 
     gl::pushModelMatrix();
 
-    gl::drawSphere( sunPosition_, SUN_RADIUS );
+    gl::drawSphere( position, SUN_RADIUS );
 
     gl::popModelMatrix();
-}
-
-bool Sun::isOnScreen()
-{
-    if ( sunPositionOnScreen.x > 0 && sunPositionOnScreen.x < getWindowWidth() && sunPositionOnScreen.y > 0 && sunPositionOnScreen.y < getWindowHeight() )
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
 }
 

@@ -11,26 +11,15 @@ Pyramid::Pyramid()
     this->slices.push_back( gl::Batch::create( loader.groupName( "Obj5" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
     this->slices.push_back( gl::Batch::create( loader.groupName( "Obj6" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
     
-    this->margin = MARGIN_DEFAULT;
-}
-
-//Pyramid::Pyramid( vec3 position, vec3 speed ) : Pyramid()
-//{
-//    this->mPosition = position;
-//    this->speedPerSecond = speed;
-//    this->tumbleAxis_ = vec3( randFloat( -1, 1 ), randFloat( -1, 1 ), randFloat( -1, 1 ) );
-//}
-
-Pyramid::Pyramid( float width, vec3 topLeftNear, vec3 bottomRightNear, vec3 topLeftFar, vec3 bottomRightFar ) : Pyramid()
-{
-    this->margin = MARGIN_DEFAULT + ( ( width - 640 ) / 640 );
-    
-    this->topLeftNear = topLeftNear;
-    this->bottomRightNear = bottomRightNear;
-    this->topLeftFar = topLeftFar;
-    this->bottomRightFar = bottomRightFar;
+    auto sphere = geom::Sphere().subdivisions( 30 ).radius( 220 );
+    this->testSphere = gl::Batch::create( sphere, gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) );
     
     this->cue = timeline().add( std::bind( &Pyramid::start, this ), timeline().getCurrentTime() + randFloat( 5, 15 ) );
+}
+
+void Pyramid::update( Frustum f )
+{
+    this->f = f;
 }
 
 void Pyramid::start()
@@ -38,61 +27,77 @@ void Pyramid::start()
     this->active = true;
     this->activated = false;
     
-    switch ( randInt( 4 ) ) {
+    float z = randFloat( -300, - ENVIRONMENT_RADIUS );
+    
+    this->mPosition = vec3( 0, 0, z );
+    
+    direction dir = static_cast<direction>( randInt( 0, last ) );
+    
+    switch ( dir ) {
             
-        case 0:
+        case left:
         {
-            float y = randFloat( topLeftFar.y, bottomRightFar.y );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( - STEP, 0, 0 );
+            this->mPosition = this->mPosition + vec3( 1, 0, 0 );
+            float y = this->mPosition.y;
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, STEP, 0 );
+            y = this->mPosition.y - y;
+            this->mPosition = vec3( this->mPosition.x, randFloat( -y, y ), this->mPosition.z );
+            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( - STEP, 0, 0 );
             
-            this->mPosition = vec3( topLeftFar.x - this->margin, y, topLeftFar.z );
-            this->speedPerSecond = vec3( randFloat( 4, 30 ), randFloat( -10, 10 ), randFloat( 4, 30 ) );
+            this->speedPerSecond = vec3( randFloat( 4, 30 ), randFloat( -10, 10 ), randFloat( -5, 5 ) );
         }
             break;
             
-        case 1:
+        case right:
         {
-            float y = randFloat( topLeftFar.y, bottomRightFar.y );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( STEP, 0, 0 );
+            this->mPosition = this->mPosition + vec3( -1, 0, 0 );
+            float y = this->mPosition.y;
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, STEP, 0 );
+            y = this->mPosition.y - y;
+            this->mPosition = vec3( this->mPosition.x, randFloat( -y, y ), this->mPosition.z );
+            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( STEP, 0, 0 );
             
-            this->mPosition = vec3( bottomRightFar.x + this->margin, y, topLeftFar.z );
-            this->speedPerSecond = vec3( randFloat( -4, -30 ), randFloat( -10, 10 ), randFloat( 4, 30 ) );
+            this->speedPerSecond = vec3( randFloat( -4, -30 ), randFloat( -10, 10 ), randFloat( -5, 5 ) );
         }
             break;
             
-        case 2:
+        case top:
         {
-            float y = randFloat( topLeftNear.y, bottomRightNear.y );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, STEP, 0 );
+            this->mPosition = this->mPosition + vec3( 0, -1, 0 );
+            float x = this->mPosition.x;
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( STEP, 0, 0 );
+            x = this->mPosition.x - x;
+            this->mPosition = vec3( randFloat( -x, x ), this->mPosition.y, this->mPosition.z );
+            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, STEP, 0 );
             
-            this->mPosition = vec3( topLeftNear.x - this->margin, y, topLeftNear.z );
-            this->speedPerSecond = vec3( randFloat( 4, 30 ), randFloat( -10, 10 ), randFloat( -4, -30 ) );
+            this->speedPerSecond = vec3( randFloat( -10, 10 ), randFloat( -4, -30 ), randFloat( -5, 5 ) );
         }
             break;
             
-        case 3:
+        case bottom:
         {
-            float y = randFloat( topLeftNear.y, bottomRightNear.y );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, - STEP, 0 );
+            this->mPosition = this->mPosition + vec3( 0, 1, 0 );
+            float x = this->mPosition.x;
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( STEP, 0, 0 );
+            x = this->mPosition.x - x;
+            this->mPosition = vec3( randFloat( -x, x ), this->mPosition.y, this->mPosition.z );
+            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, - STEP, 0 );
             
-            this->mPosition = vec3( bottomRightNear.x + this->margin, y, topLeftNear.z );
-            this->speedPerSecond = vec3( randFloat( -4, -30 ), randFloat( -10, 10 ), randFloat( -4, -30 ) );
+            this->speedPerSecond = vec3( randFloat( -10, 10 ), randFloat( 4, 30 ), randFloat( -5, 5 ) );
         }
             break;
             
         default:
             
-            throw new Exception( "Bad random value for pyramid" );
+            throw new Exception( "Bad random direction for pyramid" );
             break;
     }
     
     this->tumbleAxis_ = vec3( randFloat( -1, 1 ), randFloat( -1, 1 ), randFloat( -1, 1 ) );
-}
-
-void Pyramid::update( float width, vec3 topLeftNear, vec3 bottomRightNear, vec3 topLeftFar, vec3 bottomRightFar )
-{
-    this->margin = MARGIN_DEFAULT + ( ( width - 640 ) / 640 );
-    
-    this->topLeftNear = topLeftNear;
-    this->bottomRightNear = bottomRightNear;
-    this->topLeftFar = topLeftFar;
-    this->bottomRightFar = bottomRightFar;
 }
 
 void Pyramid::update( float time, CameraPersp camera )
@@ -147,11 +152,7 @@ void Pyramid::update( float time, CameraPersp camera )
     
     mPosition = mPosition + ( speedPerSecond * time );
     
-    vec2 positionOnScreen = camera.worldToScreen( mPosition, getWindowWidth(), getWindowHeight() );
-    
-    Rectf bounds = Rectf( -this->margin, -this->margin, getWindowWidth() + this->margin, getWindowHeight() + this->margin );
-    
-    if( bounds.contains( positionOnScreen ) )
+    if ( this->f.intersects( this->mPosition, 22 ) )
     {
         this->activated = true;
     }
@@ -159,8 +160,8 @@ void Pyramid::update( float time, CameraPersp camera )
     {
         if ( this->activated )
         {
-            mPosition = vec3( 0, 0, 500 );
             this->active = false;
+            mPosition = vec3( 0, 0, 500 );
             this->cue = timeline().add( std::bind( &Pyramid::start, this ), timeline().getCurrentTime() + randFloat( 5, 30 ) );
         }
     }
@@ -174,6 +175,7 @@ void Pyramid::draw()
     
     gl::translate( this->mPosition );
     gl::scale( 0.1, 0.1, 0.1 );
+    
     gl::rotate( tumbleAngle_, tumbleAxis_ );
     
     float distance = glm::distance( this->mPosition, vec3( 0, 0, -200 ) );
@@ -181,8 +183,6 @@ void Pyramid::draw()
     distance = 0.5 + ( 0.5 * ( 1.0 - ( distance / 1100.0 ) ) );
     
     if ( distance > 1.0 ) distance = 1.0;
-    
-//    std::cout << distance << std::endl;
     
     for ( int i = 0; i < slices.size(); ++i )
     {
@@ -192,13 +192,13 @@ void Pyramid::draw()
         }
         else
         {
-            gl::color( 0.937254901960784 * distance, 0.105882352941176 * distance, 0.203921568627451 * distance );
+            gl::color( red * distance );
         }
         
         if ( i == spinning_ )
         {
             gl::pushModelMatrix();
-            gl::rotate( Tweening::easeInOutCubic( spinningCounter_, 0.0f, THIRD_OF_A_TURN, SPIN_COUNTER_MAX ), vec3( 0, 1, 0 ) );
+            gl::rotate( Tweening::easeInOutCubic( spinningCounter_, 0, THIRD_OF_A_TURN, SPIN_COUNTER_MAX ), vec3( 0, 1, 0 ) );
         }
         
         slices[ i ]->draw();
@@ -208,6 +208,9 @@ void Pyramid::draw()
             gl::popModelMatrix();
         }
     }
+    
+//    gl::color( 0, 1, 0 );
+//    this->testSphere->draw();
     
     gl::popModelMatrix();
 }

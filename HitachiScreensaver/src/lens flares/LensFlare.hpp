@@ -14,6 +14,7 @@ public:
     void add( LensFlareElement * );
     void draw();
     
+    bool onScreen;
     vec2 position;
     float intensity = 1.0;
     

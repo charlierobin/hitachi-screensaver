@@ -13,7 +13,7 @@ public:
     
     LensFlareCentre( std::string filename );
     
-    void draw( vec2, float ) override;
+    void draw( vec2, bool, float ) override;
     
 private:
     

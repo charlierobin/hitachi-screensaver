@@ -17,11 +17,9 @@ class Pyramid
 public:
     
     Pyramid();
-//    Pyramid( vec3, vec3 );
-    Pyramid( float, vec3, vec3, vec3, vec3 );
     
     void update( float, CameraPersp );
-    void update( float, vec3, vec3, vec3, vec3 );
+    void update( Frustum f );
     void draw();
     
 private:
@@ -47,21 +45,25 @@ private:
     
     float THIRD_OF_A_TURN  = ONE_TURN / 3.0f;
     
-    float margin;
-    
-    vec3 topLeftNear;
-    vec3 bottomRightNear;
-    vec3 topLeftFar;
-    vec3 bottomRightFar;
+    Frustum f;
     
     CueRef cue;
     bool active = false;
     bool activated = false;
+    
+    Color red = Color( 0.937254901960784, 0.105882352941176, 0.203921568627451 );
+    
+    gl::BatchRef testSphere;
+    
+    enum direction {
+        left, right, top, bottom,
+        last
+    };
 };
 
 #define FLASHING_COUNTER_MAX 3
 #define SPIN_COUNTER_MAX 120
 
-#define MARGIN_DEFAULT 40.0
+#define STEP 2
 
 #endif /* Pyramid_hpp */

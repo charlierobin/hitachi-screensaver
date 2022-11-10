@@ -9,7 +9,7 @@ class LensFlareElement
     
 public:
     
-    virtual void draw( vec2, float ){};
+    virtual void draw( vec2, bool, float ){};
     
 };
 

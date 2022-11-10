@@ -10,10 +10,12 @@ LensFlareCentre::LensFlareCentre( std::string filename )
     texture = gl::Texture::create( img );
 }
 
-void LensFlareCentre::draw( vec2 position, float intensity )
+void LensFlareCentre::draw( vec2 position, bool onScreen, float intensity )
 {
-    float scaledWidth = 1024 * intensity * 0.5;
-    float scaledHeight = 1024 * intensity * 0.5;
+    if ( ! onScreen ) return;
+    
+    float scaledWidth = texture->getWidth() * intensity * 0.5;
+    float scaledHeight = texture->getHeight() * intensity * 0.5;
     
     gl::translate( position );
     gl::translate( - scaledWidth / 2, - scaledHeight / 2 );

@@ -73,9 +73,6 @@ void HitachiScreensaverApp::setup()
     for ( int i = 0; i < NUMBER_OF_HICOMMANDS; ++i ) this->placards.push_back( new HiCommandPlacard() );
     for ( int i = 0; i < NUMBER_OF_CAPTIONS; ++i ) this->placards.push_back( new CaptionPlacard() );
     
-    //    this->pyramids.push_back( new Pyramid( vec3( -10, -10, -100 ), vec3( 1, 0, 0 ) ) );
-    //    this->pyramids.push_back( new Pyramid( vec3( 10, 10, -200 ), vec3( -2, 0, 0 ) ) );
-    
     this->heroPyramid = new HeroPyramid();
     
     this->flare = new HitachiLensFlare();
@@ -89,33 +86,23 @@ void HitachiScreensaverApp::resize()
 {
     this->camera.setAspectRatio( this->getWindowAspectRatio() );
     
+    Frustum f = Frustum( this->camera );
     
-    mat4 projection = this->camera.getProjectionMatrix() * this->camera.getViewMatrix();
-    
-    vec4 viewport = vec4( 0, getWindowHeight(), getWindowWidth(), -getWindowHeight() );
-    
-    
-    this->topLeftNear = unProject( vec3( 0, 0, 0.9996 ), mat4(), projection, viewport );
-    this->bottomRightNear = unProject( vec3( getWindowWidth(), getWindowHeight(), 0.9996 ), mat4(), projection, viewport );
-    
-    //    cout << "near: " << this->topLeftNear << " to " << this->bottomRightNear << endl;
-    
-    this->topLeftFar = unProject( vec3( 0, 0, 0.9999 ), mat4(), projection, viewport );
-    this->bottomRightFar = unProject( vec3( getWindowWidth(), getWindowHeight(), 0.9999 ), mat4(), projection, viewport );
-    
-    //    cout << "far: " << this->topLeftFar << " to " << this->bottomRightFar << endl;
-    
-    for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->update( getWindowWidth(), this->topLeftNear, this->bottomRightNear, this->topLeftFar, this->bottomRightFar );
+    for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->update( f );
 }
 
 void HitachiScreensaverApp::update()
 {
+    Frustum f = Frustum( this->camera );
+    
     if ( this->pyramids.size() == 0 )
     {
         for ( int i = 0; i < NUMBER_OF_LITTLE_PYRAMIDS; ++i )
         {
-            this->pyramids.push_back( new Pyramid( getWindowWidth(), this->topLeftNear, this->bottomRightNear, this->topLeftFar, this->bottomRightFar ) );
+            this->pyramids.push_back( new Pyramid() );
         }
+        
+        for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->update( f );
     }
     
     chrono::high_resolution_clock::time_point thisTimeSample = chrono::high_resolution_clock::now();
@@ -163,45 +150,39 @@ void HitachiScreensaverApp::draw()
     this->sun->draw();
     
     
-    
-    
     for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->draw();
-    
     
     
     this->heroPyramid->draw();
     
-    
-    
-    this->flare->position = this->sun->sunPositionOnScreen;
-    
+    this->flare->position = this->sun->positionOnScreen;
+    this->flare->onScreen = this->sun->onScreen;
     
     float scaledX = flare->position.x * this->getWindowContentScale();
     float scaledY = flare->position.y * this->getWindowContentScale();
     
-    Surface s = this->copyWindowSurface( Area( scaledX, scaledY, scaledX + 1, scaledY + 1 ) );
+    Surface s = this->copyWindowSurface( Area( scaledX - 2, scaledY - 2, scaledX + 2, scaledY + 2 ) );
     
-    int yellowCount = 0;
+    float yellowCount = 0;
     
-    ColorA c = s.getPixel( vec2( 0, 0 ) );
+    Surface::Iter iter = s.getIter();
     
-    if ( c.r == 1 && c.g == 1 && c.b == 0 ) ++yellowCount;
+    float count = iter.getWidth() * iter.getHeight();
     
-    this->flare->intensity = yellowCount;
+    while( iter.line() ) {
+       while( iter.pixel() ) {
+           if ( iter.r() == 255 && iter.g() == 255 && iter.b() == 0 ) ++yellowCount;
+       }
+    }
+    
+    this->flare->intensity = yellowCount / count;
+    
+    cout << this->flare->intensity << endl;
     
     this->flare->draw();
-    
-    //    gl::setMatricesWindow( this->getWindowSize() );
-    
-    //    gl::context()->getStockShader( gl::ShaderDef().color() )->bind();
-    //    gl::color( 0, 1, 0 );
-    //    gl::pushModelMatrix();
-    //    gl::drawSphere( vec3( 0, 0, -10000 ), 200 );
-    //    gl::popModelMatrix();
 }
 
 CINDER_APP( HitachiScreensaverApp, RendererGl( RendererGl::Options().msaa( 1 ) ), [&]( App::Settings *settings )
 {
     settings->setHighDensityDisplayEnabled();
-    //    settings->setWindowSize( 640 * 2, 480 * 2 );
-})
+} )
