@@ -6,7 +6,7 @@
 
 #include "macros.h"
 
-#define SUN_RADIUS 4.0
+#define SUN_RADIUS 3.0
 #define SUN_ORBIT_RADIUS ENVIRONMENT_RADIUS - 50.0
 
 #define AROUND_X_AXIS cinder::vec3( 1, 0, 0 )

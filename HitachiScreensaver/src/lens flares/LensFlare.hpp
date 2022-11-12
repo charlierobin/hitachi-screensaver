@@ -11,12 +11,16 @@ class LensFlare
 
 public:
     
+    LensFlare();
+    
     void add( LensFlareElement * );
     void draw();
     
     bool onScreen;
     vec2 position;
+    vec2 axis;
     float intensity = 1.0;
+    float angle;
     
 private:
     

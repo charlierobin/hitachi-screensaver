@@ -13,7 +13,7 @@ public:
     
     LensFlareChromaHoop();
     
-    void draw( vec2, bool, float ) override;
+    void draw( vec2, vec2, bool, float, float ) override;
     
 private:
     

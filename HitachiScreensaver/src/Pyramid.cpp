@@ -11,8 +11,8 @@ Pyramid::Pyramid()
     this->slices.push_back( gl::Batch::create( loader.groupName( "Obj5" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
     this->slices.push_back( gl::Batch::create( loader.groupName( "Obj6" ), gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) ) );
     
-    auto sphere = geom::Sphere().subdivisions( 30 ).radius( 220 );
-    this->testSphere = gl::Batch::create( sphere, gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) );
+//    auto sphere = geom::Sphere().subdivisions( 30 ).radius( 220 );
+//    this->testSphere = gl::Batch::create( sphere, gl::context()->getStockShader( gl::ShaderDef().lambert().color() ) );
     
     this->cue = timeline().add( std::bind( &Pyramid::start, this ), timeline().getCurrentTime() + randFloat( 5, 15 ) );
 }
@@ -37,13 +37,13 @@ void Pyramid::start()
             
         case left:
         {
-            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( - STEP, 0, 0 );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( - PROBE_STEP, 0, 0 );
             this->mPosition = this->mPosition + vec3( 1, 0, 0 );
             float y = this->mPosition.y;
-            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, STEP, 0 );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, PROBE_STEP, 0 );
             y = this->mPosition.y - y;
             this->mPosition = vec3( this->mPosition.x, randFloat( -y, y ), this->mPosition.z );
-            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( - STEP, 0, 0 );
+            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( - PROBE_STEP, 0, 0 );
             
             this->speedPerSecond = vec3( randFloat( 4, 30 ), randFloat( -10, 10 ), randFloat( -5, 5 ) );
         }
@@ -51,13 +51,13 @@ void Pyramid::start()
             
         case right:
         {
-            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( STEP, 0, 0 );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( PROBE_STEP, 0, 0 );
             this->mPosition = this->mPosition + vec3( -1, 0, 0 );
             float y = this->mPosition.y;
-            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, STEP, 0 );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, PROBE_STEP, 0 );
             y = this->mPosition.y - y;
             this->mPosition = vec3( this->mPosition.x, randFloat( -y, y ), this->mPosition.z );
-            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( STEP, 0, 0 );
+            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( PROBE_STEP, 0, 0 );
             
             this->speedPerSecond = vec3( randFloat( -4, -30 ), randFloat( -10, 10 ), randFloat( -5, 5 ) );
         }
@@ -65,13 +65,13 @@ void Pyramid::start()
             
         case top:
         {
-            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, STEP, 0 );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, PROBE_STEP, 0 );
             this->mPosition = this->mPosition + vec3( 0, -1, 0 );
             float x = this->mPosition.x;
-            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( STEP, 0, 0 );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( PROBE_STEP, 0, 0 );
             x = this->mPosition.x - x;
             this->mPosition = vec3( randFloat( -x, x ), this->mPosition.y, this->mPosition.z );
-            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, STEP, 0 );
+            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, PROBE_STEP, 0 );
             
             this->speedPerSecond = vec3( randFloat( -10, 10 ), randFloat( -4, -30 ), randFloat( -5, 5 ) );
         }
@@ -79,13 +79,13 @@ void Pyramid::start()
             
         case bottom:
         {
-            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, - STEP, 0 );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, - PROBE_STEP, 0 );
             this->mPosition = this->mPosition + vec3( 0, 1, 0 );
             float x = this->mPosition.x;
-            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( STEP, 0, 0 );
+            while ( this->f.contains( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( PROBE_STEP, 0, 0 );
             x = this->mPosition.x - x;
             this->mPosition = vec3( randFloat( -x, x ), this->mPosition.y, this->mPosition.z );
-            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, - STEP, 0 );
+            while ( this->f.intersects( this->mPosition, 22 ) ) this->mPosition = this->mPosition + vec3( 0, - PROBE_STEP, 0 );
             
             this->speedPerSecond = vec3( randFloat( -10, 10 ), randFloat( 4, 30 ), randFloat( -5, 5 ) );
         }
@@ -109,6 +109,7 @@ void Pyramid::update( float time, CameraPersp camera )
     if ( flashing_ )
     {
         ++counter_;
+        
         if ( counter_ > FLASHING_COUNTER_MAX )
         {
             counter_ = 0;
@@ -125,6 +126,7 @@ void Pyramid::update( float time, CameraPersp camera )
         {
             flashing_ = true;
             direction_ = direction_ * -1;
+            
             if ( direction_ > 0 )
             {
                 current_ = 0;
@@ -139,6 +141,7 @@ void Pyramid::update( float time, CameraPersp camera )
     if ( spinning_ > -1 )
     {
         ++spinningCounter_;
+        
         if ( spinningCounter_ > SPIN_COUNTER_MAX ) spinning_ = -1;
     }
     else

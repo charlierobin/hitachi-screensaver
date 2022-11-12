@@ -53,7 +53,7 @@ private:
     
     Color red = Color( 0.937254901960784, 0.105882352941176, 0.203921568627451 );
     
-    gl::BatchRef testSphere;
+//    gl::BatchRef testSphere;
     
     enum direction {
         left, right, top, bottom,
@@ -64,6 +64,6 @@ private:
 #define FLASHING_COUNTER_MAX 3
 #define SPIN_COUNTER_MAX 120
 
-#define STEP 2
+#define PROBE_STEP 3
 
 #endif /* Pyramid_hpp */

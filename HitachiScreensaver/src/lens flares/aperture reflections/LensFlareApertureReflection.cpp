@@ -9,7 +9,7 @@ LensFlareApertureReflection::LensFlareApertureReflection( std::string filename )
     texture = gl::Texture::create( img );
 }
 
-void LensFlareApertureReflection::draw( vec2 position, bool onScreen, float intensity )
+void LensFlareApertureReflection::draw( vec2 position, vec2 axis, bool onScreen, float intensity, float angle )
 {
     if ( ! onScreen ) return;
     
@@ -28,26 +28,25 @@ void LensFlareApertureReflection::draw( vec2 position, bool onScreen, float inte
         gl::translate( 0, position.y );
         
         scaled = scaled * calculateScale( position.x );
-        
     }
     else if ( position.x > getWindowWidth() && position.x <= getWindowWidth() + 100 )
     {
         gl::translate( getWindowWidth(), position.y );
-        gl::rotate( 3.14 );
+        gl::rotate( HALF_A_TURN );
         
         scaled = scaled * calculateScale( position.x - getWindowWidth() );
     }
     else if ( position.y < 0 && position.y >= -100 )
     {
         gl::translate( position.x, 0 );
-        gl::rotate( 3.14 / 2 );
+        gl::rotate( QUARTER_OF_A_TURN );
         
         scaled = scaled * calculateScale( position.y );
     }
     else if ( position.y > getWindowHeight() && position.y <= getWindowHeight() + 100 )
     {
         gl::translate( position.x, getWindowHeight() );
-        gl::rotate( ( 3.14 * 2 ) * 0.75 );
+        gl::rotate( THREE_QUARTERS_OF_A_TURN );
         
         scaled = scaled * calculateScale( position.y - getWindowHeight() );
     }

@@ -4,6 +4,8 @@
 using namespace ci;
 using namespace ci::app;
 
+#include "macros.h"
+
 #include "LensFlareElement.hpp"
 
 class LensFlareApertureReflection: public LensFlareElement
@@ -13,7 +15,7 @@ public:
     
     LensFlareApertureReflection( std::string filename );
     
-    void draw( vec2, bool, float ) override;
+    void draw( vec2, vec2, bool, float, float ) override;
     
 private:
     

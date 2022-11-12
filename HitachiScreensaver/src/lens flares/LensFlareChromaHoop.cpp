@@ -10,16 +10,14 @@ LensFlareChromaHoop::LensFlareChromaHoop()
     texture = gl::Texture::create( img );
 }
 
-void LensFlareChromaHoop::draw( vec2 position, bool onScreen, float intensity )
+void LensFlareChromaHoop::draw( vec2 position, vec2 axis, bool onScreen, float intensity, float angle )
 {
     if ( ! onScreen ) return;
     
     
+    float scaledWidth = ( hypot( axis.x - position.x, axis.y - position.y ) ) * 2;
     
-    
-    float scaledWidth = ( hypot( 320 - position.x, 240 - position.y ) ) * 2;
-    
-    scaledWidth = scaledWidth - ( scaledWidth / 1024 );
+    scaledWidth = scaledWidth - ( scaledWidth / texture->getWidth() );
     
     float scaledHeight = scaledWidth;
     
@@ -33,11 +31,11 @@ void LensFlareChromaHoop::draw( vec2 position, bool onScreen, float intensity )
     
     gl::ScopedModelMatrix scope;
     
-    gl::translate( 320, 240 );
+    gl::translate( axis );
     
     //    gl::rotate( this->getAngleFromCentre() );
     
-    gl::rotate( atan2( 240 - position.y, 320 - position.x ) );
+    gl::rotate( atan2( axis.y - position.y, axis.x - position.x ) );
     
     gl::draw( texture, Rectf( - scaledWidth / 2, - scaledHeight / 2, scaledWidth / 2, scaledHeight / 2 ) );
     

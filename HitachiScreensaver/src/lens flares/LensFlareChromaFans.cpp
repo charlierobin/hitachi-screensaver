@@ -10,15 +10,13 @@ LensFlareChromaFans::LensFlareChromaFans()
     texture = gl::Texture::create( img );
 }
 
-void LensFlareChromaFans::draw( vec2 position, bool onScreen, float intensity )
+void LensFlareChromaFans::draw( vec2 position, vec2 axis, bool onScreen, float intensity, float angle )
 {
     if ( ! onScreen ) return;
     
     float scaled = texture->getWidth() * scale * intensity;
     
     float radius = intensity * 200;
-    
-    gl::ScopedColor color( 1, 1, 1, 1 );
     
     {
         gl::ScopedModelMatrix scope;
@@ -43,7 +41,7 @@ void LensFlareChromaFans::draw( vec2 position, bool onScreen, float intensity )
         gl::translate( 0, - radius );
         
         
-        gl::rotate( 3.14 );
+        gl::rotate( HALF_A_TURN );
         
         
         gl::draw( texture, Rectf( - scaled / 2, - scaled / 2, scaled / 2, scaled / 2 ) );

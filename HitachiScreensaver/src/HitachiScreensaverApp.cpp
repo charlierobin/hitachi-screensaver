@@ -35,12 +35,6 @@ private:
     
     CameraPersp camera;
     
-    vec3 topLeftNear;
-    vec3 bottomRightNear;
-    
-    vec3 topLeftFar;
-    vec3 bottomRightFar;
-    
     Starfield * starfield;
     HitachiLensFlare * flare;
     Sun * sun;
@@ -89,6 +83,8 @@ void HitachiScreensaverApp::resize()
     Frustum f = Frustum( this->camera );
     
     for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->update( f );
+    
+    this->flare->axis = getWindowCenter();
 }
 
 void HitachiScreensaverApp::update()
@@ -118,6 +114,8 @@ void HitachiScreensaverApp::update()
     for ( int i = 0; i < this->pyramids.size(); ++i ) this->pyramids[ i ]->update( seconds, this->camera );
     this->heroPyramid->update( seconds );
     this->sun->update( seconds, this->camera );
+    
+    this->flare->update();
     
     this->counter++;
     
@@ -167,7 +165,9 @@ void HitachiScreensaverApp::draw()
     
     Surface::Iter iter = s.getIter();
     
-    float count = iter.getWidth() * iter.getHeight();
+    float total = iter.getWidth() * iter.getHeight();
+    
+    total = 16;
     
     while( iter.line() ) {
        while( iter.pixel() ) {
@@ -175,9 +175,9 @@ void HitachiScreensaverApp::draw()
        }
     }
     
-    this->flare->intensity = yellowCount / count;
+    this->flare->intensity = yellowCount / total;
     
-    cout << this->flare->intensity << endl;
+//    cout << this->flare->intensity << endl;
     
     this->flare->draw();
 }
@@ -185,4 +185,6 @@ void HitachiScreensaverApp::draw()
 CINDER_APP( HitachiScreensaverApp, RendererGl( RendererGl::Options().msaa( 1 ) ), [&]( App::Settings *settings )
 {
     settings->setHighDensityDisplayEnabled();
+    settings->setWindowSize( 1920, 1080 );
+//    settings->setWindowSize( 1280, 720 );
 } )

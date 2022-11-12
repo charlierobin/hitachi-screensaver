@@ -19,6 +19,8 @@
 		1BD708E6D7004B4F844BE18D /* HitachiScreensaverApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CB70EF25E964E14B7231FEC /* HitachiScreensaverApp.cpp */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		CB112023291E4D7800ABC2F5 /* LensFlareSpread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB11201F291E4D7800ABC2F5 /* LensFlareSpread.cpp */; };
+		CB112024291E4D7800ABC2F5 /* LensFlareSpreadElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB112021291E4D7800ABC2F5 /* LensFlareSpreadElement.cpp */; };
 		CB1A5FA829080F7D004C7D12 /* Starfield.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB1A5FA629080F7D004C7D12 /* Starfield.cpp */; };
 		CB1A5FBF29091B38004C7D12 /* Pyramid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB1A5FBD29091B38004C7D12 /* Pyramid.cpp */; };
 		CB4972DA2913EBA100827D53 /* Sun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB4972D82913EBA100827D53 /* Sun.cpp */; };
@@ -332,6 +334,12 @@
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		561966FDC47445ED85F0F158 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* HitachiScreensaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitachiScreensaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB112015291E497900ABC2F5 /* LensFlareSpreadPentagons.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LensFlareSpreadPentagons.hpp; sourceTree = "<group>"; };
+		CB11201F291E4D7800ABC2F5 /* LensFlareSpread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LensFlareSpread.cpp; sourceTree = "<group>"; };
+		CB112020291E4D7800ABC2F5 /* LensFlareSpreadElement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LensFlareSpreadElement.hpp; sourceTree = "<group>"; };
+		CB112021291E4D7800ABC2F5 /* LensFlareSpreadElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LensFlareSpreadElement.cpp; sourceTree = "<group>"; };
+		CB112022291E4D7800ABC2F5 /* LensFlareSpread.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LensFlareSpread.hpp; sourceTree = "<group>"; };
+		CB112028291E5FD100ABC2F5 /* LensFlareCentralRing.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LensFlareCentralRing.hpp; sourceTree = "<group>"; };
 		CB1A5FA629080F7D004C7D12 /* Starfield.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Starfield.cpp; path = ../src/Starfield.cpp; sourceTree = "<group>"; };
 		CB1A5FA729080F7D004C7D12 /* Starfield.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Starfield.hpp; path = ../src/Starfield.hpp; sourceTree = "<group>"; };
 		CB1A5FBB29083D28004C7D12 /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macros.h; path = ../src/macros.h; sourceTree = "<group>"; };
@@ -679,6 +687,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				2CB70EF25E964E14B7231FEC /* HitachiScreensaverApp.cpp */,
 				CB4D26ED291BF69500F76D30 /* lens flares */,
 				CB606C0E2914190A00762959 /* CaptionPlacard.hpp */,
 				CB81B58629111A4500C251CE /* HeroPyramid.cpp */,
@@ -687,7 +696,6 @@
 				CB81B58B29113BF200C251CE /* HeroPyramidSlice.hpp */,
 				CB606C0A2914185E00762959 /* HiCommandPlacard.hpp */,
 				CBB3A2342913A7FD00B043CA /* HitachiPlacard.hpp */,
-				2CB70EF25E964E14B7231FEC /* HitachiScreensaverApp.cpp */,
 				CB4D2740291BFA6800F76D30 /* HitachiLensFlare.hpp */,
 				CB608DAA2914FD020020407D /* Lightning.cpp */,
 				CB608DAB2914FD020020407D /* Lightning.hpp */,
@@ -772,9 +780,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CB112012291E430E00ABC2F5 /* rings */ = {
+			isa = PBXGroup;
+			children = (
+				CB112028291E5FD100ABC2F5 /* LensFlareCentralRing.hpp */,
+			);
+			path = rings;
+			sourceTree = "<group>";
+		};
+		CB112013291E430E00ABC2F5 /* spreads */ = {
+			isa = PBXGroup;
+			children = (
+				CB112015291E497900ABC2F5 /* LensFlareSpreadPentagons.hpp */,
+				CB112014291E430E00ABC2F5 /* core */,
+			);
+			path = spreads;
+			sourceTree = "<group>";
+		};
+		CB112014291E430E00ABC2F5 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				CB11201F291E4D7800ABC2F5 /* LensFlareSpread.cpp */,
+				CB112022291E4D7800ABC2F5 /* LensFlareSpread.hpp */,
+				CB112021291E4D7800ABC2F5 /* LensFlareSpreadElement.cpp */,
+				CB112020291E4D7800ABC2F5 /* LensFlareSpreadElement.hpp */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
 		CB4D26ED291BF69500F76D30 /* lens flares */ = {
 			isa = PBXGroup;
 			children = (
+				CB112012291E430E00ABC2F5 /* rings */,
+				CB112013291E430E00ABC2F5 /* spreads */,
 				CBF15912291CE73A002A6131 /* aperture reflections */,
 				CB4D2752291C047C00F76D30 /* centres */,
 				CB4D2744291BFB6A00F76D30 /* LensFlare.cpp */,
@@ -1518,6 +1556,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB112024291E4D7800ABC2F5 /* LensFlareSpreadElement.cpp in Sources */,
 				CBB3A2392913A83900B043CA /* Placard.cpp in Sources */,
 				CBF1592E291D6859002A6131 /* LensFlareChromaHoop.cpp in Sources */,
 				CB4D2746291BFB6A00F76D30 /* LensFlare.cpp in Sources */,
@@ -1528,6 +1567,7 @@
 				CB4972DA2913EBA100827D53 /* Sun.cpp in Sources */,
 				CB81B58829111A4500C251CE /* HeroPyramid.cpp in Sources */,
 				CBF15915291CE75C002A6131 /* LensFlareApertureReflection.cpp in Sources */,
+				CB112023291E4D7800ABC2F5 /* LensFlareSpread.cpp in Sources */,
 				CBAA1DCD290BF62A00E0AC51 /* Tweening.cpp in Sources */,
 				1BD708E6D7004B4F844BE18D /* HitachiScreensaverApp.cpp in Sources */,
 				CB81B58D29113BF200C251CE /* HeroPyramidSlice.cpp in Sources */,
@@ -1678,6 +1718,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = (
 					"\"$(CINDER_PATH)/include\"",
