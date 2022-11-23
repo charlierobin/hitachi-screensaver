@@ -327,13 +327,13 @@
 		00B995581B128DF400A5C623 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		00B995591B128DF400A5C623 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		28E9CB835B06490AB26F95B5 /* HitachiScreensaver_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = HitachiScreensaver_Prefix.pch; sourceTree = "<group>"; };
+		28E9CB835B06490AB26F95B5 /* HitachiScreensaverApp_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitachiScreensaverApp_Prefix.pch; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2CB70EF25E964E14B7231FEC /* HitachiScreensaverApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = HitachiScreensaverApp.cpp; path = ../src/HitachiScreensaverApp.cpp; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		561966FDC47445ED85F0F158 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* HitachiScreensaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitachiScreensaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* HitachiScreensaverApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitachiScreensaverApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB112015291E497900ABC2F5 /* LensFlareSpreadPentagons.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LensFlareSpreadPentagons.hpp; sourceTree = "<group>"; };
 		CB11201F291E4D7800ABC2F5 /* LensFlareSpread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LensFlareSpread.cpp; sourceTree = "<group>"; };
 		CB112020291E4D7800ABC2F5 /* LensFlareSpreadElement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LensFlareSpreadElement.hpp; sourceTree = "<group>"; };
@@ -744,7 +744,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* HitachiScreensaver.app */,
+				8D1107320486CEB800E47090 /* HitachiScreensaverApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -766,7 +766,7 @@
 			isa = PBXGroup;
 			children = (
 				561966FDC47445ED85F0F158 /* Resources.h */,
-				28E9CB835B06490AB26F95B5 /* HitachiScreensaver_Prefix.pch */,
+				28E9CB835B06490AB26F95B5 /* HitachiScreensaverApp_Prefix.pch */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1193,9 +1193,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* HitachiScreensaver */ = {
+		8D1107260486CEB800E47090 /* HitachiScreensaverApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "HitachiScreensaver" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "HitachiScreensaverApp" */;
 			buildPhases = (
 				CB82CFE32915097A0079B77E /* ShellScript */,
 				8D1107290486CEB800E47090 /* Resources */,
@@ -1206,10 +1206,10 @@
 			);
 			dependencies = (
 			);
-			name = HitachiScreensaver;
+			name = HitachiScreensaverApp;
 			productInstallPath = "$(HOME)/Applications";
 			productName = HitachiScreensaver;
-			productReference = 8D1107320486CEB800E47090 /* HitachiScreensaver.app */;
+			productReference = 8D1107320486CEB800E47090 /* HitachiScreensaverApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1220,7 +1220,7 @@
 			attributes = {
 				LastUpgradeCheck = 1240;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "HitachiScreensaver" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "HitachiScreensaverApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
@@ -1235,7 +1235,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* HitachiScreensaver */,
+				8D1107260486CEB800E47090 /* HitachiScreensaverApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1590,7 +1590,7 @@
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = HitachiScreensaver_Prefix.pch;
+				GCC_PREFIX_HEADER = HitachiScreensaverApp_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1600,7 +1600,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charlierobin.hitachiscreensaverapp;
-				PRODUCT_NAME = HitachiScreensaver;
+				PRODUCT_NAME = HitachiScreensaverApp;
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1619,7 +1619,7 @@
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = HitachiScreensaver_Prefix.pch;
+				GCC_PREFIX_HEADER = HitachiScreensaverApp_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NDEBUG=1",
 					"$(inherited)",
@@ -1629,7 +1629,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charlierobin.hitachiscreensaverapp;
-				PRODUCT_NAME = HitachiScreensaver;
+				PRODUCT_NAME = HitachiScreensaverApp;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
@@ -1730,7 +1730,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "HitachiScreensaver" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "HitachiScreensaverApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -1739,7 +1739,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "HitachiScreensaver" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "HitachiScreensaverApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
