@@ -1599,7 +1599,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.charlierobin.hitachiscreensaverapp;
 				PRODUCT_NAME = HitachiScreensaver;
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
@@ -1628,7 +1628,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.charlierobin.hitachiscreensaverapp;
 				PRODUCT_NAME = HitachiScreensaver;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
